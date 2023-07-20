@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Concentration</string>
+
+    <!-- Page principale -->
+    <string name="button_run">Lancer</string>
+    <string name="button_resume">Reprendre</string>
+    <string name="button_pause">Pause</string>
+    <string name="button_give_up">Abandonner</string>
+    <string name="button_choose_activity">Choisir une activité</string>
+
+    <!-- Page Mes taches -->
+    <string name="option_task_my_task">Mes tâches</string>
+    <string name="option_task_stat_time">Temps passé</string>
+    <string name="option_task_stat_accomplish">Tâches accomplies</string>
+    <string name="option_task_stat_todo">Tâches restantes</string>
+
+
 </resources>
