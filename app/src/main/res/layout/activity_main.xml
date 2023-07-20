@@ -144,6 +144,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
+            android:id="@+id/bouton_repertoire"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_activite"
@@ -151,7 +152,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.367"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onButtonClicked"/>
 
         <Button
             android:layout_width="30dp"

@@ -8,6 +8,7 @@ import android.widget.Button
 import android.view.View
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.widget.ImageView
 import fr.thomatoketch.concentration.fragment.monRepertoireFragment
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var startButton: Button
     private lateinit var pauseButton: Button
     private lateinit var giveUpButton: Button
+    private lateinit var repertoireButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         startButton = findViewById<Button>(R.id.Boutton_rebours)
         pauseButton= findViewById<Button>(R.id.bouton_pause)
         giveUpButton = findViewById<Button>(R.id.bouton_abandon)
+        repertoireButton = findViewById<Button>(R.id.bouton_repertoire)
 
         startButton.setOnClickListener {
             startButton.visibility = View.GONE
@@ -36,10 +39,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         //injetcter fragment
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, monRepertoireFragment())
-        transaction.addToBackStack(null)
-        transaction.commit()
+        //val transaction = supportFragmentManager.beginTransaction()
+        //transaction.replace(R.id.fragment_container, monRepertoireFragment())
+        //transaction.addToBackStack(null)
+        //transaction.commit()
+    }
+
+    private fun onButtonClicked(view: View) {
+        val intent = Intent(this, monRepertoireFragment::class.java)
+        startActivity(intent)
     }
 
     private fun startCountdown(seconds: Long) {
