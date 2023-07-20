@@ -9,6 +9,7 @@ import android.view.View
 
 import android.animation.ObjectAnimator
 import android.widget.ImageView
+import fr.thomatoketch.concentration.fragment.monRepertoireFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
             giveUpButton.visibility = View.VISIBLE
             startCountdown(3600) // Démarrer le compte à rebours de 10 secondes
         }
+
+        //injetcter fragment
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, monRepertoireFragment())
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     private fun startCountdown(seconds: Long) {
