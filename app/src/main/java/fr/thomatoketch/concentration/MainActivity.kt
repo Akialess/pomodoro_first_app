@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         countdownTextView = findViewById(R.id.décompte)
         startButton = findViewById<Button>(R.id.Boutton_rebours)
-        pauseButton= findViewById<Button>(R.id.bouton_pause)
+        pauseButton = findViewById<Button>(R.id.bouton_pause)
         giveUpButton = findViewById<Button>(R.id.bouton_abandon)
 
         startButton.setOnClickListener {
