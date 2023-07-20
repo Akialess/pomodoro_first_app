@@ -15,8 +15,8 @@ class monRepertoireFragment : Fragment() {
         return inflater?.inflate(R.layout.mon_repertoire, container, false)
 
         //recuperer le recyclerView
-        val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView.adapter = ActivityAdapter(R.layout.item_vertical_repertoire)
+        //val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.vertical_recycler_view)
+        //verticalRecyclerView.adapter = ActivityAdapter(R.layout.item_vertical_repertoire)
     }
 
 
