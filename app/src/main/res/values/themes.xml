@@ -30,7 +30,7 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
-    <style name="default">
+    <style name="defaut">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textStyle">normal</item>
