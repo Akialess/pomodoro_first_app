@@ -13,6 +13,7 @@
     <string name="option_task_stat_time">Temps passé</string>
     <string name="option_task_stat_accomplish">Tâches accomplies</string>
     <string name="option_task_stat_todo">Tâches restantes</string>
+    <string name="name_folder_today">Aujourd\'hui</string>
 
 
 </resources>

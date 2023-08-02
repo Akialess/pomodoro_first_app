@@ -29,7 +29,7 @@ class HomeFragment(
         var giveUpButton = view?.findViewById<Button>(R.id.bouton_abandon)
 
         //timer
-        countDownTextView = view?.findViewById(R.id.décompte) as TextView //je sais bancal le bail
+        countDownTextView = view?.findViewById(R.id.décompte) as TextView //je sais c'est bancal le bail
 
         startButton?.setOnClickListener {
             startButton?.visibility = View.GONE

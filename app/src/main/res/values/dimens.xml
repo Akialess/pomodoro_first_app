@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_margin">20dp</dimen>
+    <dimen name="margin_top">72dp</dimen>
+
+    <dimen name="height_case">61dp</dimen>
+    <dimen name="font_size_case">14dp</dimen>
+    <dimen name="left_case_margin">10dp</dimen>
+
 </resources>
