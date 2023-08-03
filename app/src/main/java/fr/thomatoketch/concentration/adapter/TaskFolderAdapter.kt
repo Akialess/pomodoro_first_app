@@ -16,7 +16,7 @@ class TaskFolderAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //boite pour ranger tous les composants a controler dans fragment_task
         val iconTask = view.findViewById<ImageView>(R.id.logo_item)
-        val folderName = view.findViewById<TextView>(R.id.textView)
+        val folderName:TextView? = view.findViewById(R.id.textView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +35,7 @@ class TaskFolderAdapter(
         val currentFolder = folderList[position]
 
         //mettre à jour les infos du fichier
-        holder.folderName.text = currentFolder.name
+        holder.folderName?.text = currentFolder.name
 
     }
 
