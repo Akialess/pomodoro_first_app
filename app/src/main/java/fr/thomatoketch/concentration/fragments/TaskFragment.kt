@@ -18,11 +18,8 @@ class TaskFragment(private val context: MainActivity) : Fragment() {
         //creer une liste qui va stocker ces plants
         val folderList = arrayListOf<TaskFolderModel>()
 
-        //enregistrer des dossiers par defaut
         //ne pas oublier d'ajouter l'icone
-        folderList.add(TaskFolderModel("Aujourd'hui"))
-        folderList.add(TaskFolderModel("Révision"))
-        folderList.add(TaskFolderModel("Urgent"))
+
 
 
         //afficher les dossiers en mode vertical
