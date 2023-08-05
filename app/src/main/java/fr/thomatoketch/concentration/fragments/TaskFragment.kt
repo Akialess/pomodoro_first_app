@@ -19,23 +19,11 @@ class TaskFragment(private val context: MainActivity) : Fragment() {
 
         //ne pas oublier d'ajouter l'icone
 
-
-
         //afficher les dossiers en mode vertical
         val verticalRecyclerView = view?.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        Log.d("TAG", "here in task fragment for the view")
-        printArrayListToLog(folderList)
-        Log.d("TAG", "here in task fragment after the print of list for the view")
-        verticalRecyclerView?.adapter = TaskFolderAdapter(folderList, R.layout.item_task) //folderlist vient du singleton
+
+        verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_task) //folderlist vient du singleton
 
         return view
     }
-    fun printArrayListToLog(list: ArrayList<TaskFolderModel>) {
-        val lenofList = list.size
-        Log.d("TAG", "Longueur liste : $lenofList")
-        for (item in list) {
-            Log.d("TAG", item.name)
-        }
-    }
-
 }

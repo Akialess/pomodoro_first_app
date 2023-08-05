@@ -20,6 +20,7 @@
             android:id="@+id/icon_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
             android:background="@drawable/icone_bleu"/>
 
         <ImageView
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/name_folder_today"
+        android:text="Auhjourd'hui2"
         android:textSize="@dimen/font_size_case"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
