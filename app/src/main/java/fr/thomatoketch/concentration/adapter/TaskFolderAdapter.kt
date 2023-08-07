@@ -40,11 +40,12 @@ class TaskFolderAdapter(
         val currentFolder = folderList[position]
 
         //mettre à jour les infos du fichier
+
         holder.folderName?.text = currentFolder.name
 
         if (currentFolder.color != null) {
-            val newColor = Color.parseColor(currentFolder.color)
-            holder.folderColor?.backgroundTintList = ColorStateList.valueOf(newColor)
+            val newColor = Color.parseColor(currentFolder.color) //convertir la couleur en un entier
+            holder.folderColor?.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
 
         }
     }

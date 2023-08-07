@@ -1,6 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <View
+        android:id="@+id/task"
+        android:layout_width="340dp"
+        android:layout_height="61dp"
+        android:background="@drawable/rectangle_blanc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="@dimen/left_case_margin"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/task"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/icon_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icone_bleu"
+            android:backgroundTint="@color/blue" />
+
+        <ImageView
+            android:id="@+id/logo_item"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_home" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view_separation"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/task"
+        app:layout_constraintTop_toTopOf="@+id/task" />
+
+    <TextView
+        android:id="@+id/name_task"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apprendre Kotlin"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_separation"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="60 minutes"
+        android:textSize="11dp"
+        android:layout_marginLeft="@dimen/left_case_margin"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/task"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/view_separation" />
+
+    <TextView
+        android:id="@+id/task_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0/0"
+        android:textSize="16dp"
+        android:layout_marginRight="15dp"
+        style="@style/DefaultTextStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/task"
+        app:layout_constraintEnd_toEndOf="@+id/task"
+        app:layout_constraintTop_toTopOf="@+id/task" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

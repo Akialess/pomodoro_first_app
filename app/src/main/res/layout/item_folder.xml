@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Auhjourd'hui2"
+        android:text="Aujourd'hui2"
         android:textSize="@dimen/font_size_case"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
