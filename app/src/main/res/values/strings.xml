@@ -10,10 +10,12 @@
 
     <!-- Page Mes taches -->
     <string name="option_task_my_task">Mes tâches</string>
+    <string name="option_task_my_folder">Mes dossiers</string>
     <string name="option_task_stat_time">Temps passé</string>
     <string name="option_task_stat_accomplish">Tâches accomplies</string>
     <string name="option_task_stat_todo">Tâches restantes</string>
     <string name="name_folder_today">Aujourd\'hui2</string>
+
 
 
 </resources>

@@ -11,6 +11,9 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
+import fr.thomatoketch.concentration.FolderPopup
+import fr.thomatoketch.concentration.FolderRepository
+import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 
 class HomeFragment(
     private val context: MainActivity
@@ -27,6 +30,7 @@ class HomeFragment(
         var startButton = view?.findViewById<Button>(R.id.Boutton_rebours)
         var pauseButton = view?.findViewById<Button>(R.id.bouton_pause)
         var giveUpButton = view?.findViewById<Button>(R.id.bouton_abandon)
+        var activityButton = view?.findViewById<Button>(R.id.bouton_activite)
 
         //timer
         countDownTextView = view?.findViewById(R.id.décompte) as TextView //je sais c'est bancal le bail
@@ -37,6 +41,11 @@ class HomeFragment(
             giveUpButton?.visibility = View.VISIBLE
             startCountdown(3600) // Démarrer le compte à rebours de 10 secondes
         }
+
+        activityButton?.setOnClickListener{
+            FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder)).show()
+        }
+
         return view
     }
     private fun startCountdown(seconds: Long) {

@@ -28,7 +28,7 @@ class FolderRepository {
                 for (ds in snapshot.children) {
                     //recupere toute la database et transforme dans le bon modele (objet TaskFolderModel)
                     //construire un objet dossier
-                    Log.d("TAG", "hereeeee")
+                    Log.d("TAG", "hereeeee in updateData")
                     val folder = ds.getValue(TaskFolderModel::class.java) // en quel objet doit etre transformer folder
 
                     if (folder != null){

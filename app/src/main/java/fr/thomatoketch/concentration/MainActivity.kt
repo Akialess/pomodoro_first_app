@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import fr.thomatoketch.concentration.fragments.HomeFragment
-import fr.thomatoketch.concentration.fragments.TaskFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             //le code ici sera execute apres avoir recuperer le call back
             //injecter le fragment dans notre boite (fragment_container)
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, TaskFragment(this)) //modifier le dernier param pour afficher une autre page
+            transaction.replace(R.id.fragment_container, HomeFragment(this)) //modifier le dernier param pour afficher une autre page
             transaction.addToBackStack(null)
             transaction.commit()
             Log.d("TAG", "here 1")

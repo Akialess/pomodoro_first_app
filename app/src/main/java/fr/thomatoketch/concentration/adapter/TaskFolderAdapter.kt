@@ -13,12 +13,12 @@ import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskFolderModel
 
 class TaskFolderAdapter(
-    private val context: MainActivity,
+    val context: MainActivity,
     private val folderList: List<TaskFolderModel>,
     private  val layoutId: Int
 ) : RecyclerView.Adapter<TaskFolderAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //boite pour ranger tous les composants a controler dans fragment_task
+        //boite pour ranger tous les composants a controler dans fragment_folder
         val iconFolder: ImageView? = view.findViewById(R.id.logo_item)
         val folderName: TextView? = view.findViewById(R.id.textView)
         val folderColor: View? = view.findViewById(R.id.icon_item)
