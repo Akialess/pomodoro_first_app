@@ -4,9 +4,11 @@
     <dimen name="margin_top">72dp</dimen>
 
     <dimen name="height_case">61dp</dimen>
+    <dimen name="width_case">340dp</dimen>
     <dimen name="font_size_case">14dp</dimen>
     <dimen name="left_case_margin">15dp</dimen>
     <dimen name="left_text_margin">36dp</dimen>
     <dimen name="margin_top_with_option">111dp</dimen>
+
 
 </resources>

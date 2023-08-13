@@ -13,6 +13,7 @@ import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.FolderPopup
 import fr.thomatoketch.concentration.FolderRepository
+import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 
 class HomeFragment(
@@ -42,8 +43,10 @@ class HomeFragment(
             startCountdown(3600) // Démarrer le compte à rebours de 10 secondes
         }
 
+
         activityButton?.setOnClickListener{
             FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder)).show()
+            //FolderPopup(TaskAdapter(context, FolderRepository.Singleton.taskList, R.layout.item_task)).show()
         }
 
         return view

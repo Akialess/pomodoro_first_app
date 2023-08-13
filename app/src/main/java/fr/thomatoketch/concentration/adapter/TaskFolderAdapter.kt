@@ -2,15 +2,20 @@ package fr.thomatoketch.concentration.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.FolderPopup
+import fr.thomatoketch.concentration.FolderRepository
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskFolderModel
+import fr.thomatoketch.concentration.TaskPopup
+import fr.thomatoketch.concentration.TaskRepository
 
 class TaskFolderAdapter(
     val context: MainActivity,
@@ -47,6 +52,14 @@ class TaskFolderAdapter(
             val newColor = Color.parseColor(currentFolder.color) //convertir la couleur en un entier
             holder.folderColor?.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
 
+        }
+
+        //quand on clique sur un item
+        holder.itemView.setOnClickListener{
+            val taskRepo = TaskRepository()
+            taskRepo.getTaskList(currentFolder.path) { taskList ->
+                TaskPopup(TaskAdapter(context, taskList, R.layout.item_task)).show()
+            }
         }
     }
 

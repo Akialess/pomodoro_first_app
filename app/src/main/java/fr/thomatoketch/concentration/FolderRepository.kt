@@ -7,15 +7,19 @@ import com.google.firebase.database.ValueEventListener
 import fr.thomatoketch.concentration.FolderRepository.Singleton.databaseRef
 import fr.thomatoketch.concentration.FolderRepository.Singleton.folderList
 import android.util.Log
+import fr.thomatoketch.concentration.FolderRepository.Singleton.databaseRefTask
+import fr.thomatoketch.concentration.FolderRepository.Singleton.taskList
 import javax.security.auth.callback.Callback
 
 class FolderRepository {
     object Singleton {
         //se connecter a la reference "dossier" de la database
         val databaseRef = FirebaseDatabase.getInstance().getReference("dossier") //ref dans la firebase
+        val databaseRefTask = FirebaseDatabase.getInstance().getReference("dossier/dossier1/activityfolder")
 
         //creer une liste qui va contenir les dossiers
         val folderList = arrayListOf<TaskFolderModel>()
+        val taskList = arrayListOf<TaskModel>()
     }
 
     fun updateData(callback: () -> Unit) {
@@ -43,6 +47,24 @@ class FolderRepository {
             override fun onCancelled(error: DatabaseError) {
                 //quand on trouve pas
             }
+
+        })
+
+        databaseRefTask.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                taskList.clear()
+                Log.d("TAG", "Ici dans databaseRefTask")
+                for (ds in snapshot.children) {
+                    val task = ds.getValue(TaskModel::class.java) // en quel objet doit etre transformer folder
+                    if (task != null){
+                        Log.d("TAG", "Il y a dans la liste ${task.name}")
+                        taskList.add(task)
+                    }
+                }
+                callback()
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
 
         })
     }
