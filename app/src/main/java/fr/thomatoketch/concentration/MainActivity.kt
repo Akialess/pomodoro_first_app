@@ -1,6 +1,7 @@
 package fr.thomatoketch.concentration
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import fr.thomatoketch.concentration.fragments.HomeFragment
 import android.widget.Button
@@ -28,86 +29,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        countdownTextView = findViewById(R.id.décompte)
-        startButton = findViewById<Button>(R.id.Boutton_rebours)
-        pauseButton= findViewById<Button>(R.id.bouton_pause)
-        restartButton= findViewById<Button>(R.id.bouton_restart)
-        giveUpButton = findViewById<Button>(R.id.bouton_abandon)
-        repertoireButton = findViewById<Button>(R.id.bouton_repertoire)
+        //charger notre FolderRepository
+        val repo = FolderRepository()
 
-        startButton.setOnClickListener {
-            startButton.visibility = View.GONE
-            pauseButton.visibility = View.VISIBLE
-            giveUpButton.visibility = View.VISIBLE
-            startTimer(tempsInitial) // Démarrer le compte à rebours de 10 secondes
-        }
-
-        pauseButton.setOnClickListener {
-            pauseButton.visibility = View.GONE
-            restartButton.visibility = View.VISIBLE
-            pauseTimer()
-        }
-
-        restartButton.setOnClickListener {
-            restartButton.visibility = View.GONE
-            pauseButton.visibility = View.VISIBLE
-            startTimer(tempsRestant)
-        }
-
-        giveUpButton.setOnClickListener {
-            startButton.visibility = View.VISIBLE
-            pauseButton.visibility = View.GONE
-            giveUpButton.visibility = View.GONE
-            restartButton.visibility = View.GONE
-            startTimer(0) // Démarrer le compte à rebours de 10 secondes
-        }
-
-
-        //injetcter fragment
-        //val transaction = supportFragmentManager.beginTransaction()
-        //transaction.replace(R.id.fragment_container, monRepertoireFragment())
-        //transaction.addToBackStack(null)
-        //transaction.commit()
-    }
-
-    private fun onButtonClicked(view: View) {
-        val intent = Intent(this, monRepertoireFragment::class.java)
-        startActivity(intent)
-    }
-
-    private fun startTimer(secondes: Long) {
-        val totalMillis = secondes * 1000
-
-        if (::countDownTimer.isInitialized) {
-            countDownTimer.cancel()
-        }
-
-        countDownTimer = object : CountDownTimer(totalMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                tempsRestant = millisUntilFinished / 1000
-                val minutes = (millisUntilFinished / 1000) / 60
-                val secondes = (millisUntilFinished / 1000) % 60
-                val timeLeftFormatted = String.format("%02d:%02d", minutes, secondes)
-                countdownTextView.text = timeLeftFormatted
-            }
-
-            override fun onFinish() {
-                countdownTextView.text = "00:00"
-            }
-        }
-
-        countDownTimer.start()
-    }
-
-    private fun pauseTimer() {
-        countDownTimer.cancel()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (::countDownTimer.isInitialized) {
-            countDownTimer.cancel()
+        //mettre a jour la listre de plantes
+        repo.updateData {
+            //le code ici sera execute apres avoir recuperer le call back
+            //injecter le fragment dans notre boite (fragment_container)
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, HomeFragment(this)) //modifier le dernier param pour afficher une autre page
+            transaction.addToBackStack(null)
+            transaction.commit()
+            Log.d("TAG", "here 1")
         }
     }
 }

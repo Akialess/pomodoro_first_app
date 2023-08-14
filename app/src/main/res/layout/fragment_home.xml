@@ -17,10 +17,10 @@
         android:background="@drawable/cercle_gris"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="0.486" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.55">
 
         <Button
-            android:id="@+id/Boutton_rebours"
+            android:id="@+id/bouton_rebours"
             android:layout_width="220dp"
             android:layout_height="match_parent"
             android:background="@drawable/bouton_lancer"
@@ -84,6 +84,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            style="@style/Bouton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -92,6 +94,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/bouton_pause"
             android:text="Pause"
+            style="@style/Bouton"
             android:textSize="18sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,13 +104,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/bouton_restart"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Lancer"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:theme="@style/Bouton"
+            app:layout_constraintHorizontal_bias="0.892"
+            android:background="@drawable/bouton_pause"/>
+
+        <Button
             android:id="@+id/bouton_abandon"
             android:layout_width="132dp"
             android:layout_height="match_parent"
             android:background="@drawable/bouton_abandon"
             android:text="Abandonner"
-            android:textSize="18sp"
+            style="@style/Bouton"
             android:visibility="gone"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.108"
@@ -117,7 +135,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/Boutton_activité"
+        android:id="@+id/bouton_activite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -126,9 +144,10 @@
         android:layout_width="342dp"
         android:layout_height="61dp"
         android:gravity="center"
+        android:paddingTop="15dp"
         android:text="Choisir une activité"
-        android:textSize="18sp"
-        android:textColor="@color/black"
+        style="@style/Bouton"
+        android:textColor="@color/teal_700"
         app:backgroundTint="@color/white"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout

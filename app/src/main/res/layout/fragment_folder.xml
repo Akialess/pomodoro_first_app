@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue_200"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_mon_dossier">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vertical_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <View
+            android:id="@+id/cercle_ajouter"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/cercle_bleu" />
+
+        <View
+            android:id="@+id/plus_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/rectangle_bleu_plus" />
+
+        <View
+            android:id="@+id/plus_vertical"
+            android:layout_width="5dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/rectangle_bleu_plus" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text_mon_dossier"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/left_text_margin"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_marginBottom="538dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Mes dossiers"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="@+id/fragment_container2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
