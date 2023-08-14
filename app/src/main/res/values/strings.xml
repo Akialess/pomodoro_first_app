@@ -15,4 +15,6 @@
     <string name="option_task_stat_todo">Tâches restantes</string>
 
 
+    <string name="repertoire">Mon répertoire</string>
+    <string name="tache">Mes tâches</string>
 </resources>

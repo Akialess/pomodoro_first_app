@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <FrameLayout
+        android:layout_width="292dp"
+        android:layout_height="292dp">
+
+        <View
+            android:id="@+id/cercle_blc_ext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cercle_blanc" />
+
+        <View
+            android:id="@+id/décompte_cercle"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cercle_bleu" />
+
+        <View
+            android:id="@+id/cercle_blc_int"
+            android:layout_width="231dp"
+            android:layout_height="231dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cercle_blanc" />
+
+        <TextView
+            android:id="@+id/décompte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="00:00"
+            android:textSize="65sp" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
