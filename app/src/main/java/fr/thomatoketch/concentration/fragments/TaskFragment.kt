@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.FolderRepository.Singleton.folderList
-import fr.thomatoketch.concentration.FolderRepository.Singleton.taskList
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
-import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 
 class TaskFragment(private val context: MainActivity) : Fragment() {
@@ -21,9 +19,7 @@ class TaskFragment(private val context: MainActivity) : Fragment() {
 
         //afficher les dossiers en mode vertical
         val verticalRecyclerView = view?.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-        verticalRecyclerView?.adapter = TaskAdapter(context, taskList, R.layout.item_task)
-
-        //verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_folder) //folderlist vient du singleton
+        verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_folder)
 
         return view
     }

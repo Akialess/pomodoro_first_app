@@ -4,26 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import fr.thomatoketch.concentration.fragments.HomeFragment
-import android.widget.Button
-import android.view.View
-import android.animation.ObjectAnimator
-import android.content.Intent
-import android.widget.ImageView
-import fr.thomatoketch.concentration.fragment.monRepertoireFragment
+
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var countdownTextView: TextView
-    private lateinit var countDownTimer: CountDownTimer
-    private lateinit var startButton: Button
-    private lateinit var pauseButton: Button
-    private lateinit var restartButton: Button
-    private lateinit var giveUpButton: Button
-    private lateinit var repertoireButton: Button
-    private var tempsInitial: Long = 3600 // Exemple : 600 secondes (10 minutes)
-    private var tempsRestant: Long = tempsInitial
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
