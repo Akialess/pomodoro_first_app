@@ -69,7 +69,6 @@ class HomeFragment(
 
         activityButton?.setOnClickListener{
             FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder)).show()
-            //FolderPopup(TaskAdapter(context, FolderRepository.Singleton.taskList, R.layout.item_task)).show()
         }
 
         return view
