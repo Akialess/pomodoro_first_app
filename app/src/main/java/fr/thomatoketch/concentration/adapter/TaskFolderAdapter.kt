@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.FolderPopup
 import fr.thomatoketch.concentration.FolderRepository
@@ -16,11 +18,14 @@ import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskFolderModel
 import fr.thomatoketch.concentration.TaskPopup
 import fr.thomatoketch.concentration.TaskRepository
+import fr.thomatoketch.concentration.fragments.TaskFragment
+import kotlin.reflect.typeOf
 
 class TaskFolderAdapter(
     val context: MainActivity,
     private val folderList: List<TaskFolderModel>,
-    private  val layoutId: Int
+    private val layoutId: Int,
+    private val toShow: String
 ) : RecyclerView.Adapter<TaskFolderAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //boite pour ranger tous les composants a controler dans fragment_folder
@@ -58,10 +63,15 @@ class TaskFolderAdapter(
         holder.itemView.setOnClickListener{
             val taskRepo = TaskRepository()
             taskRepo.getTaskList(currentFolder.path) { taskList ->
-                TaskPopup(TaskAdapter(context, taskList, R.layout.item_task)).show()
+                if (toShow == "TaskPopup") {
+                    TaskPopup(TaskAdapter(context, taskList, R.layout.item_task)).show()
+                } else if (toShow == "TaskFragment") {
+                    val transaction = context.supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, TaskFragment(context, TaskAdapter(context, taskList, R.layout.item_task)))
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+                }
             }
         }
     }
-
-
 }

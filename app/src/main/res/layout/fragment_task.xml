@@ -19,8 +19,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/width_case"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:cardElevation="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <View

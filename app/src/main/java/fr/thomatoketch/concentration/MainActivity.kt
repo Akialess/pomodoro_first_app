@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import fr.thomatoketch.concentration.fragments.HomeFragment
-import fr.thomatoketch.concentration.fragments.TaskFragment
+import fr.thomatoketch.concentration.fragments.FolderFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.task_page -> {
-                    loadFragment(TaskFragment(this))
+                    loadFragment(FolderFragment(this))
                     return@setOnNavigationItemSelectedListener true
                 }
                 //TODO("modifier pour les suivants")
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             //le code ici sera execute apres avoir recuperer le call back
             //injecter le fragment dans notre boite (fragment_container)
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment) //modifier le dernier param pour afficher une autre page
+            transaction.replace(R.id.fragment_container, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
             Log.d("TAG", "here 1")

@@ -11,16 +11,15 @@ import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 
-class PopupFragment(private val context: MainActivity) : Fragment() {
+class FolderFragment(private val context: MainActivity) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.popup_folder, container, false)
+        val view = inflater.inflate(R.layout.fragment_folder, container, false)
 
         //ne pas oublier d'ajouter l'icone
 
         //afficher les dossiers en mode vertical
         val verticalRecyclerView = view?.findViewById<RecyclerView>(R.id.vertical_recycler_view)
-
-        verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_folder) //folderlist vient du singleton
+        verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_folder, "TaskFragment")
 
         return view
     }
