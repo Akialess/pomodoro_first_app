@@ -7,7 +7,7 @@ import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import fr.thomatoketch.concentration.data.Folder
-import fr.thomatoketch.concentration.data.FolderViewModel
+import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.data.Task
 import kotlinx.android.synthetic.main.popup_add_folder.add_btn
 import kotlinx.android.synthetic.main.popup_add_folder.edName
@@ -15,14 +15,14 @@ import kotlinx.android.synthetic.main.popup_add_folder.edName
 class FolderPopupAdd(private val context: MainActivity
 ) : Dialog(context) {
 
-    private lateinit var folderViewModel: FolderViewModel
+    private lateinit var viewModel: ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.popup_add_folder)
 
-        folderViewModel = ViewModelProvider(context).get(FolderViewModel::class.java)
+        viewModel = ViewModelProvider(context).get(ViewModel::class.java)
 
         add_btn.setOnClickListener{
             insertDataToDatabase()
@@ -39,7 +39,7 @@ class FolderPopupAdd(private val context: MainActivity
             //Create folder object
             val folder = Folder(0, name, color)
             //Add data to database
-            folderViewModel.addFolder(folder)
+            viewModel.addFolder(folder)
             Toast.makeText(context, "Dossier créé", Toast.LENGTH_SHORT).show()
             //Enlever popup
             dismiss()
@@ -57,9 +57,9 @@ class FolderPopupAdd(private val context: MainActivity
         val name = edName.text.toString()
 
         //Create folder object
-        val task = Task(0, name)
+        val task = Task(0, name, 3)
         //Add data to database
-        folderViewModel.addTask(task)
+        viewModel.addTask(task)
         Toast.makeText(context, "Test créé", Toast.LENGTH_SHORT).show()
         //Enlever popup
         dismiss()

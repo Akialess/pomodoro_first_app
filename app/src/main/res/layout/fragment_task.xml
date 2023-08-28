@@ -25,29 +25,19 @@
             app:cardElevation="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <View
-            android:id="@+id/cercle_ajouter"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="110dp"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/cercle_bleu" />
-
-        <View
-            android:id="@+id/plus_horizontal"
-            android:layout_width="30dp"
-            android:layout_height="5dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/rectangle_bleu_plus" />
-
-        <View
-            android:id="@+id/plus_vertical"
-            android:layout_width="5dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/rectangle_bleu_plus" />
+            android:tint="@color/blue"
+            android:backgroundTint="@color/lightBlue_500"
+            app:maxImageSize="50dp"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:srcCompat="@drawable/ic_add" />
 
     </FrameLayout>
 

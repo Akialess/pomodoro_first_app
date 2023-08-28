@@ -8,4 +8,5 @@ data class Task(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
+    val folderId: Int
 )

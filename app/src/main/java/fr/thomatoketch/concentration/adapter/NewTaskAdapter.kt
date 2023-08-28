@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.data.Task
-import kotlinx.android.synthetic.main.item_folder_popup.view.textView
+import kotlinx.android.synthetic.main.item_task.view.name_task
 
-class NewTaskAdapter: RecyclerView.Adapter<NewTaskAdapter.MyViewHolder>(){
+class NewTaskAdapter(private val context: MainActivity): RecyclerView.Adapter<NewTaskAdapter.MyViewHolder>(){
     private var taskList = emptyList<Task>()
-
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -20,8 +20,8 @@ class NewTaskAdapter: RecyclerView.Adapter<NewTaskAdapter.MyViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentFolder = taskList[position]
-        holder.itemView.textView.text = currentFolder.name.toString()
+        val currentTask = taskList[position]
+        holder.itemView.name_task.text = currentTask.name.toString()
     }
 
     override fun getItemCount(): Int {
@@ -32,4 +32,5 @@ class NewTaskAdapter: RecyclerView.Adapter<NewTaskAdapter.MyViewHolder>(){
         this.taskList = task
         notifyDataSetChanged()
     }
+
 }

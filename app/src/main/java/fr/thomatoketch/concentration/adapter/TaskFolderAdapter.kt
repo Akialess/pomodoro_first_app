@@ -2,24 +2,15 @@ package fr.thomatoketch.concentration.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import fr.thomatoketch.concentration.FolderPopup
-import fr.thomatoketch.concentration.FolderRepository
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskFolderModel
-import fr.thomatoketch.concentration.TaskPopup
-import fr.thomatoketch.concentration.TaskRepository
-import fr.thomatoketch.concentration.fragments.TaskFragment
-import kotlin.reflect.typeOf
 
 class TaskFolderAdapter(
     val context: MainActivity,
@@ -60,6 +51,7 @@ class TaskFolderAdapter(
         }
 
         //quand on clique sur un item
+        /*
         holder.itemView.setOnClickListener{
             val taskRepo = TaskRepository()
             taskRepo.getTaskList(currentFolder.path) { taskList ->
@@ -73,5 +65,7 @@ class TaskFolderAdapter(
                 }
             }
         }
+
+         */
     }
 }
