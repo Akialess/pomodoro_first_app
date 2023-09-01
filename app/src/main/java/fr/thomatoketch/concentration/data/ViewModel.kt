@@ -13,17 +13,16 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     val readAllData: LiveData<List<Folder>>
     val readAllTask: LiveData<List<Task>>
     var readAllTaskByFolder: LiveData<List<TaskWithFolder>>?
-    private val repositoryFolder: NewFolderRepository
-    private val repositoryTask: NewTaskRepository
+    private val repositoryFolder: FolderRepository
+    private val repositoryTask: TaskRepository
 
     init {
         val folderDao = MyDatabase.getDatabase(application).folderDao()
         val taskDao = MyDatabase.getDatabase(application).taskDao()
-        repositoryFolder = NewFolderRepository(folderDao)
-        repositoryTask = NewTaskRepository(taskDao)
+        repositoryFolder = FolderRepository(folderDao)
+        repositoryTask = TaskRepository(taskDao)
         readAllData = repositoryFolder.readAllData
         readAllTask = repositoryTask.readAllData
-        //readAllTaskByFolder = repositoryTask.readAllDataByFolder
         readAllTaskByFolder = null
     }
 
@@ -40,8 +39,13 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getTaskByFolder(folderId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            readAllTaskByFolder = repositoryTask.getTaskByFolder(folderId)
-        }
+        //voir s'il faut mettre une coroutine
+        readAllTaskByFolder = repositoryTask.getTaskByFolder(folderId)
+
     }
+
+    fun getFolderInfoById(folderId: Int): LiveData<Folder> {
+        return repositoryFolder.getFolderInfoByID(folderId)
+    }
+
 }

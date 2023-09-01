@@ -1,7 +1,6 @@
 package fr.thomatoketch.concentration.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.FolderItemClickListener
 import fr.thomatoketch.concentration.FolderPopupAdd
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
-import fr.thomatoketch.concentration.adapter.NewTaskFolderAdapter
+import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 import fr.thomatoketch.concentration.data.ViewModel
 import kotlinx.android.synthetic.main.fragment_folder.view.floatingActionButton
 
-class FolderFragment(private val context: MainActivity) : Fragment() {
+class FolderFragment(private val context: MainActivity) : Fragment(), FolderItemClickListener {
 
     private lateinit var viewModel: ViewModel
 
@@ -27,11 +27,10 @@ class FolderFragment(private val context: MainActivity) : Fragment() {
         //ne pas oublier d'ajouter l'icone
 
         //afficher les dossiers en mode vertical
-        val adapter = NewTaskFolderAdapter(context)
+        val adapter = TaskFolderAdapter(context, this)
         val verticalRecyclerView = view?.findViewById<RecyclerView>(R.id.vertical_recycler_view)
         verticalRecyclerView?.adapter = adapter
         verticalRecyclerView?.layoutManager = LinearLayoutManager(context)
-        //verticalRecyclerView?.adapter = TaskFolderAdapter(context, folderList, R.layout.item_folder, "TaskFragment")
 
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
         viewModel.readAllData.observe(viewLifecycleOwner, Observer { folder ->
@@ -39,12 +38,20 @@ class FolderFragment(private val context: MainActivity) : Fragment() {
         })
 
 
-
+        //Bouton pour ajouter des fichiers
         view.floatingActionButton.setOnClickListener {
-            Log.d("TAG", "le bouton a bien fonctionne")
             FolderPopupAdd(context).show()
         }
 
         return view
+    }
+
+    override fun onFolderItemClick(folderId: Int) {
+        //Log.d("TAG", "id of folder : ${folderId}")
+        viewModel.getTaskByFolder(folderId)
+        val transaction = context.supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, TaskFragment(context))
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

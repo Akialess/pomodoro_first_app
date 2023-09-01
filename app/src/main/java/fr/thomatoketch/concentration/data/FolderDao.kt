@@ -16,4 +16,7 @@ interface FolderDao {
 
     @Query("SELECT * FROM folder_table ORDER BY id ASC") //Query -> ecrire des instructions SQL (prendre toute la table)
     fun readAllData(): LiveData<List<Folder>>
+
+    @Query("SELECT * FROM folder_table WHERE id = :folderId")
+    fun getFolderInfoById(folderId: Int): LiveData<Folder>
 }

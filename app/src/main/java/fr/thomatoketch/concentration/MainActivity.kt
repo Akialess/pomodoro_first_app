@@ -43,19 +43,18 @@ class MainActivity : AppCompatActivity() {
         loadFragment(HomeFragment(this))
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        //charger notre FolderRepository
-        val repo = FolderRepository()
 
-        //mettre a jour la listre de plantes
-        repo.updateData {
-            //le code ici sera execute apres avoir recuperer le call back
-            //injecter le fragment dans notre boite (fragment_container)
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-            Log.d("TAG", "here 1")
-        }
+    private fun loadFragment(fragment: Fragment) {
+
+        //le code ici sera execute apres avoir recuperer le call back
+        //injecter le fragment dans notre boite (fragment_container)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+        Log.d("TAG", "here 1")
+
     }
+
+
 }

@@ -12,12 +12,10 @@ import androidx.fragment.app.Fragment
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.FolderPopup
-import fr.thomatoketch.concentration.FolderRepository
-import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 
 class HomeFragment(
     private val context: MainActivity
-) : Fragment() {
+) : Fragment(){
     private lateinit var countDownTextView: TextView
     private lateinit var countDownTimer: CountDownTimer
 
@@ -68,7 +66,8 @@ class HomeFragment(
 
 
         activityButton?.setOnClickListener{
-            FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder, "TaskPopup")).show()
+            //FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder, "TaskPopup")).show()
+            FolderPopup(context).show()
         }
 
         return view
@@ -109,4 +108,5 @@ class HomeFragment(
             countDownTimer.cancel()
         }
     }
+
 }
