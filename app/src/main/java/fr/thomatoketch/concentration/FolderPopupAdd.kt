@@ -34,8 +34,8 @@ class FolderPopupAdd(private val context: MainActivity
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
 
         add_btn.setOnClickListener{
-            insertDataToDatabase()
-            //insertDataToDatabaseTest()
+            //insertDataToDatabase()
+            insertDataToDatabaseTest()
         }
 
     }
@@ -67,7 +67,7 @@ class FolderPopupAdd(private val context: MainActivity
         val name = edName.text.toString()
 
         //Create folder object
-        val task = Task(0, name, 3)
+        val task = Task(0, name, 2)
         //Add data to database
         viewModel.addTask(task)
         Toast.makeText(context, "Test créé", Toast.LENGTH_SHORT).show()

@@ -19,8 +19,9 @@ import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.utils.SpacingitemDecorator
 
-class TaskFragment(private val context: MainActivity): Fragment() {
+class TaskFragment(private val context: MainActivity, val folderId: Int): Fragment() {
 
+    //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,12 +48,14 @@ class TaskFragment(private val context: MainActivity): Fragment() {
         val itemMargin = SpacingitemDecorator()
         verticalRecyclerView?.addItemDecoration(itemMargin)
 
-        val textPopup = view.findViewById<TextView>(R.id.textView)
+
+        val textTitle = view.findViewById<TextView>(R.id.textView)
         //TODO("recuperer les infos du fichier pour pouvoir personnaliser la page Task et modifier folderId en dessous")
-        viewModel.getFolderInfoById(1).observe(context, Observer { data ->
+        viewModel.getFolderInfoById(folderId).observe(context, Observer { data ->
             Log.d("TAG", "$data")
-            textPopup.text = data.name
+            textTitle.text = data.name
         })
+
 
         return view
     }

@@ -35,8 +35,6 @@ class FolderPopup(private val context: MainActivity): Dialog(context), FolderIte
         })
     }
 
-
-
     override fun onFolderItemClick(folderId: Int) {
         Log.d("TAG", "id folder popup : $folderId")
         val adapter = TaskAdapter(context)
