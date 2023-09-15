@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/width_case"
     android:layout_height="350dp"
+    android:orientation="horizontal"
     android:background="@color/lightBlue_200">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Nommer votre dossier"
+        android:text="Créer votre dossier"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +31,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <FrameLayout
+        android:id="@+id/select_color"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edName" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+    </FrameLayout>
+
+
 
     <Button
         android:id="@+id/add_btn"

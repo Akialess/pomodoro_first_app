@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun loadFragment(fragment: Fragment) {
-
         //le code ici sera execute apres avoir recuperer le call back
         //injecter le fragment dans notre boite (fragment_container)
         val transaction = supportFragmentManager.beginTransaction()

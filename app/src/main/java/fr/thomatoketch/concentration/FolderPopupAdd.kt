@@ -6,6 +6,9 @@ import android.text.TextUtils
 import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.adapter.ColorAdapter
 import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.data.Task
@@ -16,11 +19,17 @@ class FolderPopupAdd(private val context: MainActivity
 ) : Dialog(context) {
 
     private lateinit var viewModel: ViewModel
+    private lateinit var adapter: ColorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.popup_add_folder)
+
+        adapter = ColorAdapter(context)
+        val recyclerView = findViewById<RecyclerView>(R.id.horizontal_recycler_view)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
 
@@ -33,7 +42,8 @@ class FolderPopupAdd(private val context: MainActivity
 
     private fun insertDataToDatabase() {
         val name = edName.text.toString()
-        val color = "#2457C5"
+        val color = adapter.getSelectedColor().color
+
 
         if (inputCheck(name, color)){
             //Create folder object

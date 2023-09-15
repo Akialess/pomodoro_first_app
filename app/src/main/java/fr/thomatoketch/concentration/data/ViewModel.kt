@@ -23,6 +23,7 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         repositoryTask = TaskRepository(taskDao)
         readAllData = repositoryFolder.readAllData
         readAllTask = repositoryTask.readAllData
+
         readAllTaskByFolder = null
     }
 
