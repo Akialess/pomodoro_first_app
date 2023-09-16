@@ -1,5 +1,6 @@
 package fr.thomatoketch.concentration.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.data.Task
+import kotlinx.android.synthetic.main.item_task.view.icon_item
 import kotlinx.android.synthetic.main.item_task.view.name_task
+import kotlinx.android.synthetic.main.item_task.view.timeTask
+import kotlinx.android.synthetic.main.item_task.view.totalTaskScore
 
 class TaskAdapter(private val context: MainActivity): RecyclerView.Adapter<TaskAdapter.MyViewHolder>(){
     private var taskList = emptyList<Task>()
@@ -21,7 +25,16 @@ class TaskAdapter(private val context: MainActivity): RecyclerView.Adapter<TaskA
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentTask = taskList[position]
+
         holder.itemView.name_task.text = currentTask.name.toString()
+
+        val newColor = android.graphics.Color.parseColor(currentTask.color) //convertir la couleur en un entier
+        holder.itemView.icon_item.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
+
+        holder.itemView.totalTaskScore.text = currentTask.totalTask.toString()
+
+        holder.itemView.timeTask.text = currentTask.time.toString()
+
     }
 
     override fun getItemCount(): Int {

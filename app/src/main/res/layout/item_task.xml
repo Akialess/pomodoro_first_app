@@ -64,10 +64,11 @@
         app:layout_constraintTop_toTopOf="@+id/cardView" />
 
     <TextView
+        android:id="@+id/timeTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="60 minutes"
+        android:text="60"
         android:textSize="11dp"
         android:layout_marginLeft="@dimen/left_case_margin"
         android:layout_marginBottom="6dp"
@@ -76,10 +77,44 @@
         app:layout_constraintTop_toBottomOf="@+id/view_separation" />
 
     <TextView
-        android:id="@+id/task_score"
+        android:id="@+id/textMinutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/0"
+        android:fontFamily="@font/poppins_medium"
+        android:text=" minutes"
+        android:textSize="11dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/task"
+        app:layout_constraintStart_toEndOf="@+id/timeTask"
+        app:layout_constraintTop_toBottomOf="@+id/name_task" />
+
+    <TextView
+        android:id="@+id/finishTaskScore"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separationTaskScore"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/separationTaskScore"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/totalTaskScore"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalTaskScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
         android:textSize="16dp"
         android:layout_marginRight="15dp"
         style="@style/DefaultTextStyle"

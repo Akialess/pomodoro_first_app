@@ -78,4 +78,8 @@ dependencies {
     //DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
+    //Number Picker
+    implementation "com.wefika:horizontal-picker:1.1.1"
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+
 }

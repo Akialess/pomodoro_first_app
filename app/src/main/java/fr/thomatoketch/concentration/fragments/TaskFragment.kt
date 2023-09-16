@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.utils.SpacingitemDecorator
+import kotlinx.android.synthetic.main.fragment_task.view.floatingActionButton
 
 class TaskFragment(private val context: MainActivity, val folderId: Int): Fragment() {
 
@@ -55,6 +57,15 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
             Log.d("TAG", "$data")
             textTitle.text = data.name
         })
+
+        view.floatingActionButton.setOnClickListener {
+            val transaction = context.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, TaskAddFragment(context, folderId))
+            transaction.addToBackStack(null)
+            transaction.commit()
+
+            Toast.makeText(context, "Bouton cliqué", Toast.LENGTH_SHORT).show()
+        }
 
 
         return view
