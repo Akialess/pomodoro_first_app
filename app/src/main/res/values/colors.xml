@@ -15,4 +15,13 @@
     <color name="blue">#2457C5</color>
     <color name="blue_700">#2734FF</color>
 
+    <color name="red_select">#FF0000</color>
+    <color name="yellow_select">#FFEB3B</color>
+    <color name="aqua_select">#03A9F4</color>
+    <color name="green_select">#006000</color>
+    <color name="purple_select">#9C27B0</color>
+    <color name="pink_select">#E91E63</color>
+    <color name="orange_select">#FF5722</color>
+    <color name="gray_select">#009688</color>
+
 </resources>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightBlue_200">
+
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/add_task_title"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="@dimen/margin_top_with_option"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_name"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edName"
+            android:layout_width="340dp"
+            android:layout_height="61dp"
+            android:background="@drawable/rectangle_blanc"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+        <TextView
+            android:id="@+id/text_description"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_description"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edName" />
+
+        <EditText
+            android:id="@+id/edDescription"
+            android:layout_width="340dp"
+            android:layout_height="122dp"
+            android:background="@drawable/rectangle_blanc"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_description" />
+
+        <TextView
+            android:id="@+id/text_logo"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_logo"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edDescription" />
+
+        <TextView
+            android:id="@+id/text_number"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_number"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_logo" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="@dimen/width_case"
+            android:layout_height="@dimen/height_case"
+            android:background="@drawable/rectangle_blanc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_number">
+
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/task_number_picker"
+                android:layout_width="340dp"
+                android:layout_height="61dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_number"
+                app:np_dividerColor="@android:color/transparent"
+                app:np_formatter="@string/number_picker_formatter"
+                app:np_max="59"
+                app:np_min="0"
+                app:np_orientation="horizontal"
+                app:np_selectedTextColor="@color/blue"
+                app:np_selectedTextSize="24sp"
+                app:np_textColor="@color/blue"
+                app:np_textSize="18sp"
+                app:np_typeface="sans-serif-light"
+                app:np_value="3"
+                app:np_wheelItemCount="5" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_time"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_time"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTime"
+            android:layout_width="@dimen/width_case"
+            android:layout_height="@dimen/height_case"
+            android:background="@drawable/rectangle_blanc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_time">
+
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/time_number_picker"
+                android:layout_width="340dp"
+                android:layout_height="61dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_number"
+                app:np_dividerColor="@android:color/transparent"
+                app:np_formatter="@string/number_picker_formatter"
+                app:np_max="180"
+                app:np_min="1"
+                app:np_orientation="horizontal"
+                app:np_selectedTextColor="@color/blue"
+                app:np_selectedTextSize="24sp"
+                app:np_textColor="@color/blue"
+                app:np_textSize="18sp"
+                app:np_typeface="sans-serif-light"
+                app:np_value="15"
+                app:np_wheelItemCount="5" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_break"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="36dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/add_task_break"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutTime" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutBreak"
+            android:layout_width="@dimen/width_case"
+            android:layout_height="@dimen/height_case"
+            android:background="@drawable/rectangle_blanc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_break">
+
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/break_number_picker"
+                android:layout_width="340dp"
+                android:layout_height="61dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_number"
+                app:np_dividerColor="@android:color/transparent"
+                app:np_formatter="@string/number_picker_formatter"
+                app:np_max="180"
+                app:np_min="0"
+                app:np_orientation="horizontal"
+                app:np_selectedTextColor="@color/blue"
+                app:np_selectedTextSize="24sp"
+                app:np_textColor="@color/blue"
+                app:np_textSize="18sp"
+                app:np_typeface="sans-serif-light"
+                app:np_value="5"
+                app:np_wheelItemCount="5" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="80dp"
+            android:backgroundTint="@color/lightBlue_500"
+            android:clickable="true"
+            android:tint="@color/blue"
+            android:layout_marginTop="40dp"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutBreak"
+            app:maxImageSize="50dp"
+            app:srcCompat="@drawable/ic_add" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

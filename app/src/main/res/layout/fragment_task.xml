@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="70dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/lightBlue_200"
@@ -19,33 +21,27 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/width_case"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:cardElevation="50dp"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <View
-            android:id="@+id/cercle_ajouter"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="119dp"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/cercle_bleu" />
-
-        <View
-            android:id="@+id/plus_horizontal"
-            android:layout_width="30dp"
-            android:layout_height="5dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/rectangle_bleu_plus" />
-
-        <View
-            android:id="@+id/plus_vertical"
-            android:layout_width="5dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/rectangle_bleu_plus" />
+            android:tint="@color/blue"
+            android:backgroundTint="@color/lightBlue_500"
+            app:maxImageSize="50dp"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:srcCompat="@drawable/ic_add" />
 
     </FrameLayout>
 
@@ -58,7 +54,7 @@
         android:layout_marginLeft="36dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/option_task_my_task"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,12 +70,13 @@
         app:layout_constraintTop_toBottomOf="@+id/text_mes_taches" />
 
     <TextView
+        android:id="@+id/textView"
         style="@style/DefaultTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="Aujourd'hui"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/text_mes_taches"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

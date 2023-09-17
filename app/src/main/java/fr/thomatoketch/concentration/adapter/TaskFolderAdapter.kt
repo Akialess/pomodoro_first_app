@@ -1,67 +1,59 @@
+
 package fr.thomatoketch.concentration.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import fr.thomatoketch.concentration.FolderPopup
-import fr.thomatoketch.concentration.FolderRepository
+import fr.thomatoketch.concentration.FolderItemClickListener
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
-import fr.thomatoketch.concentration.TaskFolderModel
-import fr.thomatoketch.concentration.TaskPopup
-import fr.thomatoketch.concentration.TaskRepository
+import fr.thomatoketch.concentration.data.Folder
+import fr.thomatoketch.concentration.data.ViewModel
+import kotlinx.android.synthetic.main.item_folder_popup.view.icon_item
+import kotlinx.android.synthetic.main.item_folder_popup.view.textView
 
-class TaskFolderAdapter(
-    val context: MainActivity,
-    private val folderList: List<TaskFolderModel>,
-    private  val layoutId: Int
-) : RecyclerView.Adapter<TaskFolderAdapter.ViewHolder>(){
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class TaskFolderAdapter(val context: MainActivity, private val folderItemClickListener: FolderItemClickListener): RecyclerView.Adapter<TaskFolderAdapter.MyViewHolder>() {
+
+    private var folderList = emptyList<Folder>()
+    private lateinit var viewModel: ViewModel
+
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         //boite pour ranger tous les composants a controler dans fragment_folder
-        val iconFolder: ImageView? = view.findViewById(R.id.logo_item)
-        val folderName: TextView? = view.findViewById(R.id.textView)
-        val folderColor: View? = view.findViewById(R.id.icon_item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_folder, parent, false))
+    }
 
-        return ViewHolder(view)
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentFolder = folderList[position]
+        holder.itemView.textView.text = currentFolder.name.toString()
+        if (currentFolder.color != null) {
+            val newColor = Color.parseColor(currentFolder.color) //convertir la couleur en un entier
+            holder.itemView.icon_item?.backgroundTintList =
+                ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
+
+        }
+        viewModel = ViewModelProvider(context).get(ViewModel::class.java)
+        //holder.itemView.truc.text = currentFolder.color.toString()
+
+        holder.itemView.setOnClickListener{
+            //permet de différencier si l'adapter est dans le HomeFragment ou dans TaskFragment
+            folderItemClickListener.onFolderItemClick(currentFolder.id)
+        }
     }
 
     override fun getItemCount(): Int {
-        //nombre d'item à afficher dans notre liste
         return folderList.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //recuperer les infos du fichiers (nom + icone + couleur)
-        val currentFolder = folderList[position]
-
-        //mettre à jour les infos du fichier
-
-        holder.folderName?.text = currentFolder.name
-
-        if (currentFolder.color != null) {
-            val newColor = Color.parseColor(currentFolder.color) //convertir la couleur en un entier
-            holder.folderColor?.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
-
-        }
-
-        //quand on clique sur un item
-        holder.itemView.setOnClickListener{
-            val taskRepo = TaskRepository()
-            taskRepo.getTaskList(currentFolder.path) { taskList ->
-                TaskPopup(TaskAdapter(context, taskList, R.layout.item_task)).show()
-            }
-        }
+    fun setData(folder: List<Folder>) {
+        this.folderList = folder
+        notifyDataSetChanged()
     }
-
-
 }
