@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 
 
 @Dao
@@ -13,6 +14,9 @@ interface TaskDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE) //si on a 2 fois le meme, on ignore
     fun addTask(task: Task)
+
+    @Update
+    suspend fun updateTask(task: Task)
 
     /*
     @Transaction

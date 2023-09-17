@@ -9,6 +9,7 @@ import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskItemClickListener
 import fr.thomatoketch.concentration.data.Task
+import kotlinx.android.synthetic.main.item_task.view.finishTaskScore
 import kotlinx.android.synthetic.main.item_task.view.icon_item
 import kotlinx.android.synthetic.main.item_task.view.name_task
 import kotlinx.android.synthetic.main.item_task.view.timeTask
@@ -31,6 +32,8 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
 
         val newColor = android.graphics.Color.parseColor(currentTask.color) //convertir la couleur en un entier
         holder.itemView.icon_item.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
+
+        holder.itemView.finishTaskScore.text = currentTask.remainingTask.toString()
 
         holder.itemView.totalTaskScore.text = currentTask.totalTask.toString()
 

@@ -39,6 +39,12 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun updateTask(task: Task) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repositoryTask.updateTask(task)
+        }
+    }
+
     fun getTaskByFolder(folderId: Int) {
         //voir s'il faut mettre une coroutine
         readAllTaskByFolder = repositoryTask.getTaskByFolder(folderId)

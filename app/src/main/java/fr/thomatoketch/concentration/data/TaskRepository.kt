@@ -12,6 +12,10 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.addTask(task)
     }
 
+    suspend fun updateTask(task: Task){
+        taskDao.updateTask(task)
+    }
+
     fun getTaskByFolder(folderId: Int): LiveData<List<TaskWithFolder>> {
         return taskDao.getTaskByFolder(folderId)
     }

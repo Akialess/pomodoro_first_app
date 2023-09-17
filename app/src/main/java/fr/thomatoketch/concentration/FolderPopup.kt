@@ -63,6 +63,7 @@ class FolderPopup(private val context: MainActivity, private val homePage: HomeF
 
     override fun onTaskItemClick(task: Task) {
         homePage.setTask(task)
+        homePage.startTimer(task.time.toLong() * 60)
 
         dismiss()
     }
