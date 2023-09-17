@@ -41,7 +41,7 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
         })
 
         //met des espaces entre les items
-        var dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
         ResourcesCompat.getDrawable(resources, R.drawable.divider, null)?.let {
             dividerItemDecoration.setDrawable(it)
         }
@@ -50,9 +50,9 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
         val itemMargin = SpacingitemDecorator()
         verticalRecyclerView?.addItemDecoration(itemMargin)
 
-
         val textTitle = view.findViewById<TextView>(R.id.textView)
-        //TODO("recuperer les infos du fichier pour pouvoir personnaliser la page Task et modifier folderId en dessous")
+
+        //met le bon titre avec le nom du fichier
         viewModel.getFolderInfoById(folderId).observe(context, Observer { data ->
             Log.d("TAG", "$data")
             textTitle.text = data.name

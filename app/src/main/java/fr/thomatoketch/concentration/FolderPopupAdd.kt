@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.adapter.ColorAdapter
 import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.ViewModel
-import fr.thomatoketch.concentration.data.Task
 import kotlinx.android.synthetic.main.popup_add_folder.add_btn
 import kotlinx.android.synthetic.main.popup_add_folder.edName
 
@@ -26,6 +25,7 @@ class FolderPopupAdd(private val context: MainActivity
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.popup_add_folder)
 
+        //affiche l'option pour choisir une couleur
         adapter = ColorAdapter(context)
         val recyclerView = findViewById<RecyclerView>(R.id.horizontal_recycler_view)
         recyclerView.adapter = adapter
@@ -33,14 +33,15 @@ class FolderPopupAdd(private val context: MainActivity
 
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
 
+        //Bouton ajouter
         add_btn.setOnClickListener{
             insertDataToDatabase()
-            //insertDataToDatabaseTest()
         }
 
     }
 
     private fun insertDataToDatabase() {
+        //Recupere les options mis par l'utilisateur
         val name = edName.text.toString()
         val color = adapter.getSelectedColor().color
 
@@ -53,7 +54,6 @@ class FolderPopupAdd(private val context: MainActivity
             Toast.makeText(context, "Dossier créé", Toast.LENGTH_SHORT).show()
             //Enlever popup
             dismiss()
-
         } else {
             Toast.makeText(context, "Veuillez donner un nom", Toast.LENGTH_SHORT).show()
         }
@@ -63,16 +63,4 @@ class FolderPopupAdd(private val context: MainActivity
         return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(color))
     }
 
-    private fun insertDataToDatabaseTest() {
-        val name = edName.text.toString()
-
-        //Create folder object
-        val task = Task(0, name, 2, "#FFFFFF", 10, 0, 0)
-        //Add data to database
-        viewModel.addTask(task)
-        Toast.makeText(context, "Test créé", Toast.LENGTH_SHORT).show()
-        //Enlever popup
-        dismiss()
-
-    }
 }

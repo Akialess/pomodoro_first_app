@@ -86,7 +86,7 @@ class HomeFragment(
             pauseButton.visibility = View.GONE
             giveUpButton.visibility = View.GONE
             restartButton.visibility = View.GONE
-            //startTimer(0) // Démarrer le compte à rebours de 10 secondes
+
             onDestroy()
             //on refait apparaitre le bouton choisir une activite
             taskActivity.visibility = View.GONE
@@ -95,7 +95,6 @@ class HomeFragment(
 
 
         activityButton.setOnClickListener{
-            //FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder, "TaskPopup")).show()
             FolderPopup(context, this).show()
         }
 
@@ -147,6 +146,7 @@ class HomeFragment(
     }
 
     fun setTask(task: Task) {
+        //modification layout
         currentTask = task
 
         activityButton.visibility = View.GONE
@@ -175,6 +175,7 @@ class HomeFragment(
                 task.totalTask
             )
             viewModel.updateTask(updatedTask)
+            //modif affichage
             taskActivity.finishTaskScore.text = (task.remainingTask + 1).toString()
 
             Toast.makeText(context, "Tâche finie", Toast.LENGTH_SHORT).show()

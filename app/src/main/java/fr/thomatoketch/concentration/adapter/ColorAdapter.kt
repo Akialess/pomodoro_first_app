@@ -36,7 +36,7 @@ class ColorAdapter(private val context: MainActivity): RecyclerView.Adapter<Colo
         val bleuFond = android.graphics.Color.parseColor("#EDF2FC")
         val bleuSelection = android.graphics.Color.parseColor("#2457C5")
 
-        //quand on sélectionne l'item, on met une couleur
+        //quand on selectionne l'item, on met un cercle colore autour de la couleur choisie
         if(singleitem_selection_position == position) {
             holder.itemView.cercle_select.backgroundTintList = ColorStateList.valueOf(bleuSelection)
         } else {
@@ -50,6 +50,8 @@ class ColorAdapter(private val context: MainActivity): RecyclerView.Adapter<Colo
     }
 
     private fun setSingleSelection(adapterPosition: Int) {
+        //savoir si item choisi
+
         if (adapterPosition == RecyclerView.NO_POSITION) return
 
         notifyItemChanged(singleitem_selection_position)

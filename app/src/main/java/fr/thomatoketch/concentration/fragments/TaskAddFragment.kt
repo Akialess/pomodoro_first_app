@@ -27,6 +27,7 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task_add, container, false)
 
+        //recupere la couleur du fichier car meme que pour la tache
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
         viewModel.getFolderInfoById(folderId).observe(context, Observer { data ->
             color = data.color
@@ -50,6 +51,8 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
         }
 
         view.floatingActionButton.setOnClickListener {
+            //TODO("Verifier input")
+            //TODO("Pour le nom, mettre une seule ligne et quand on appuie sur entrer, valider au lieu de sauter une ligne)
             val name = edName.text.toString()
             //TODO("Récupérer les infos de la case description et ajouter une partie description dans la database")
 

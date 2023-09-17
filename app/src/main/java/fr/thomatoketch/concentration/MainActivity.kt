@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //barre de navigation
         val navigationView = findViewById<BottomNavigationView>(R.id.navigation_view)
         navigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun loadFragment(fragment: Fragment) {
-        //le code ici sera execute apres avoir recuperer le call back
+
         //injecter le fragment dans notre boite (fragment_container)
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
