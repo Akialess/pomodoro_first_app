@@ -1,11 +1,9 @@
 package fr.thomatoketch.concentration.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -34,11 +32,11 @@ class FolderFragment(private val context: MainActivity) : Fragment(), FolderItem
         verticalRecyclerView?.adapter = adapter
         verticalRecyclerView?.layoutManager = LinearLayoutManager(context)
 
+        //Mettre dans l'adapter tous les folders
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
         viewModel.readAllData.observe(viewLifecycleOwner, Observer { folder ->
             adapter.setData(folder)
         })
-
 
         //Bouton pour ajouter des fichiers
         view.floatingActionButton.setOnClickListener {
@@ -49,7 +47,7 @@ class FolderFragment(private val context: MainActivity) : Fragment(), FolderItem
     }
 
     override fun onFolderItemClick(folderId: Int) {
-        //Log.d("TAG", "id of folder : ${folderId}")
+        //Quand on clique sur un dossier dans FolderFragment, on affiche la page TaskFragment
         viewModel.getTaskByFolder(folderId)
         val transaction = context.supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, TaskFragment(context, folderId))

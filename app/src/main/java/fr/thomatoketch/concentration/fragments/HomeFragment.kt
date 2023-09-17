@@ -1,5 +1,6 @@
 package fr.thomatoketch.concentration.fragments
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
@@ -12,9 +13,14 @@ import androidx.fragment.app.Fragment
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.FolderPopup
+import fr.thomatoketch.concentration.data.Task
+import kotlinx.android.synthetic.main.fragment_home.view.name_task
+import kotlinx.android.synthetic.main.item_task.view.icon_item
+import kotlinx.android.synthetic.main.item_task.view.timeTask
+import kotlinx.android.synthetic.main.item_task.view.totalTaskScore
 
 class HomeFragment(
-    private val context: MainActivity
+    private val context: MainActivity,
 ) : Fragment(){
     private lateinit var countDownTextView: TextView
     private lateinit var countDownTimer: CountDownTimer
@@ -22,17 +28,22 @@ class HomeFragment(
     private var tempsInitial: Long = 3600 // Exemple : 600 secondes (10 minutes)
     private var tempsRestant: Long = tempsInitial
 
+    private lateinit var view: View
+
+    private lateinit var activityButton: Button
+    private lateinit var taskActivity: View
+
 
     //permet d'injecter le layout
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_home, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        view = inflater.inflate(R.layout.fragment_home, container, false)
 
         //bouton pour le pomodoro
-        var startButton = view?.findViewById<Button>(R.id.bouton_rebours)
-        var pauseButton = view?.findViewById<Button>(R.id.bouton_pause)
-        var giveUpButton = view?.findViewById<Button>(R.id.bouton_abandon)
-        var activityButton = view?.findViewById<Button>(R.id.bouton_activite)
-        var restartButton = view?.findViewById<Button>(R.id.bouton_restart)
+        var startButton = view.findViewById<Button>(R.id.bouton_rebours)
+        var pauseButton = view.findViewById<Button>(R.id.bouton_pause)
+        var giveUpButton = view.findViewById<Button>(R.id.bouton_abandon)
+        activityButton = view.findViewById<Button>(R.id.bouton_activite)
+        var restartButton = view.findViewById<Button>(R.id.bouton_restart)
 
         //timer
         countDownTextView = view?.findViewById(R.id.décompte) as TextView //je sais c'est bancal le bail
@@ -62,12 +73,16 @@ class HomeFragment(
             giveUpButton?.visibility = View.GONE
             restartButton?.visibility = View.GONE
             startTimer(0) // Démarrer le compte à rebours de 10 secondes
+
+            //on refait apparaitre le bouton choisir une activite
+            taskActivity.visibility = View.GONE
+            activityButton.visibility = View.VISIBLE
         }
 
 
         activityButton?.setOnClickListener{
             //FolderPopup(TaskFolderAdapter(context, FolderRepository.Singleton.folderList, R.layout.item_folder, "TaskPopup")).show()
-            FolderPopup(context).show()
+            FolderPopup(context, this).show()
         }
 
         return view
@@ -108,5 +123,20 @@ class HomeFragment(
             countDownTimer.cancel()
         }
     }
+
+    fun setTask(task: Task) {
+        taskActivity = view.findViewById(R.id.taskActivity)
+        activityButton.visibility = View.GONE
+        taskActivity.visibility = View.VISIBLE
+
+        taskActivity.name_task.text = task.name.toString()
+        val newColor = android.graphics.Color.parseColor(task.color) //convertir la couleur en un entier
+        taskActivity.icon_item.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
+        taskActivity.totalTaskScore.text = task.totalTask.toString()
+        taskActivity.timeTask.text = task.time.toString()
+
+    }
+
+
 
 }

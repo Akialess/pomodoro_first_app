@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
+import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
+import fr.thomatoketch.concentration.fragments.HomeFragment
 
-class FolderPopup(private val context: MainActivity): Dialog(context), FolderItemClickListener {
+class FolderPopup(private val context: MainActivity, private val homePage: HomeFragment): Dialog(context), FolderItemClickListener, TaskItemClickListener {
 
     private lateinit var viewModel: ViewModel
 
@@ -37,7 +39,7 @@ class FolderPopup(private val context: MainActivity): Dialog(context), FolderIte
 
     override fun onFolderItemClick(folderId: Int) {
         Log.d("TAG", "id folder popup : $folderId")
-        val adapter = TaskAdapter(context)
+        val adapter = TaskAdapter(context, this)
         val recyclerView = findViewById<RecyclerView>(R.id.vertical_recycler_view)
         recyclerView.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
@@ -57,5 +59,11 @@ class FolderPopup(private val context: MainActivity): Dialog(context), FolderIte
             Log.d("TAG", "$data")
             textPopup.text = data.name
         })
+    }
+
+    override fun onTaskItemClick(task: Task) {
+        homePage.setTask(task)
+
+        dismiss()
     }
 }

@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
+import fr.thomatoketch.concentration.TaskItemClickListener
 import fr.thomatoketch.concentration.data.Task
 import kotlinx.android.synthetic.main.item_task.view.icon_item
 import kotlinx.android.synthetic.main.item_task.view.name_task
 import kotlinx.android.synthetic.main.item_task.view.timeTask
 import kotlinx.android.synthetic.main.item_task.view.totalTaskScore
 
-class TaskAdapter(private val context: MainActivity): RecyclerView.Adapter<TaskAdapter.MyViewHolder>(){
+class TaskAdapter(private val context: MainActivity, private val taskItemClickListener: TaskItemClickListener): RecyclerView.Adapter<TaskAdapter.MyViewHolder>(){
     private var taskList = emptyList<Task>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -34,6 +35,12 @@ class TaskAdapter(private val context: MainActivity): RecyclerView.Adapter<TaskA
         holder.itemView.totalTaskScore.text = currentTask.totalTask.toString()
 
         holder.itemView.timeTask.text = currentTask.time.toString()
+
+        //quand on clique sur l'item
+        holder.itemView.setOnClickListener {
+            //permet de differencier si on est dans FolderPopup ou TaskFragment
+            taskItemClickListener.onTaskItemClick(currentTask)
+        }
 
     }
 

@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.486" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -141,14 +141,147 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.85"
-        android:layout_width="342dp"
-        android:layout_height="61dp"
+        android:background="@drawable/rectangle_blanc"
+        android:layout_width="@dimen/width_case"
+        android:layout_height="@dimen/height_case"
         android:gravity="center"
         android:paddingTop="15dp"
         android:text="Choisir une activité"
+        android:visibility="visible"
         style="@style/Bouton"
-        android:textColor="@color/teal_700"
-        app:backgroundTint="@color/white"/>
+        android:textColor="@color/teal_700" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/taskActivity"
+        android:layout_width="@dimen/width_case"
+        android:layout_height="@dimen/height_case"
+        android:layout_marginTop="345dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/bouton_activite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view">
+
+        <View
+            android:id="@+id/task"
+            android:layout_width="@dimen/width_case"
+            android:layout_height="@dimen/height_case"
+            android:background="@drawable/rectangle_blanc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginLeft="@dimen/left_case_margin"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/task"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/icon_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icone_bleu"
+                android:backgroundTint="@color/blue" />
+
+            <ImageView
+                android:id="@+id/logo_item"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_home" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/view_separation"
+            android:layout_width="340dp"
+            android:layout_height="1dp"
+            android:background="@color/blue"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/task"
+            app:layout_constraintEnd_toEndOf="@+id/task"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/task" />
+
+        <TextView
+            android:id="@+id/name_task"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Apprendre Kotlin"
+            app:layout_constraintBottom_toTopOf="@+id/view_separation"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/timeTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_case_margin"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="60"
+            android:textSize="11dp"
+            app:layout_constraintBottom_toBottomOf="@+id/task"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/view_separation" />
+
+        <TextView
+            android:id="@+id/textMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text=" minutes"
+            android:textSize="11dp"
+            app:layout_constraintBottom_toBottomOf="@+id/task"
+            app:layout_constraintStart_toEndOf="@+id/timeTask"
+            app:layout_constraintTop_toBottomOf="@+id/name_task" />
+
+        <TextView
+            android:id="@+id/finishTaskScore"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/separationTaskScore"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/separationTaskScore"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/totalTaskScore"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/totalTaskScore"
+            style="@style/DefaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="0"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/task"
+            app:layout_constraintEnd_toEndOf="@+id/task"
+            app:layout_constraintTop_toTopOf="@+id/task" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

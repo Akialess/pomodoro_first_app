@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="70dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/lightBlue_200"
@@ -23,6 +25,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:cardElevation="50dp"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -30,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="119dp"
             android:layout_gravity="center"
             android:tint="@color/blue"
             android:backgroundTint="@color/lightBlue_500"
@@ -50,7 +54,7 @@
         android:layout_marginLeft="36dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/option_task_my_task"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +76,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="Aujourd'hui"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/text_mes_taches"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
