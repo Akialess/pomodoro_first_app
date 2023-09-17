@@ -86,8 +86,8 @@ class HomeFragment(
             pauseButton.visibility = View.GONE
             giveUpButton.visibility = View.GONE
             restartButton.visibility = View.GONE
-            startTimer(0) // Démarrer le compte à rebours de 10 secondes
-
+            //startTimer(0) // Démarrer le compte à rebours de 10 secondes
+            onDestroy()
             //on refait apparaitre le bouton choisir une activite
             taskActivity.visibility = View.GONE
             activityButton.visibility = View.VISIBLE
@@ -143,6 +143,7 @@ class HomeFragment(
         if (::countDownTimer.isInitialized) {
             countDownTimer.cancel()
         }
+        countDownTextView.text = "00:00"
     }
 
     fun setTask(task: Task) {
