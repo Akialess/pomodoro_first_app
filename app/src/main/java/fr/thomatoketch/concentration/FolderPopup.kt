@@ -15,6 +15,7 @@ import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.fragments.HomeFragment
 
+// Popup pour selectionner le bon dossier sur la page Home
 class FolderPopup(private val context: MainActivity, private val homePage: HomeFragment): Dialog(context), FolderItemClickListener, TaskItemClickListener {
 
     private lateinit var viewModel: ViewModel

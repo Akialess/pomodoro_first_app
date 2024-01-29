@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -19,12 +20,14 @@ import fr.thomatoketch.concentration.TaskItemClickListener
 import fr.thomatoketch.concentration.adapter.TaskAdapter
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.utils.SpacingitemDecorator
+import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task.view.floatingActionButton
 
 class TaskFragment(private val context: MainActivity, val folderId: Int): Fragment(), TaskItemClickListener {
 
     //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
+    private lateinit var backButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
@@ -65,6 +68,11 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
+        view.backButton.setOnClickListener {
+            context.onBackPressed();
+        }
+
 
 
         return view

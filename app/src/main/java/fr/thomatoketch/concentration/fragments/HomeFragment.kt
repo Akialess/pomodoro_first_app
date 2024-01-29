@@ -164,22 +164,21 @@ class HomeFragment(
     fun updateTask(task: Task) {
         //TODO("verifier input")
         //TODO("si finishedtask = totaltask : supprimer")
-        if (true) {
-            val updatedTask = Task(
-                task.id,
-                task.name,
-                task.folderId,
-                task.color,
-                task.time,
-                task.remainingTask + 1,
-                task.totalTask
-            )
-            viewModel.updateTask(updatedTask)
-            //modif affichage
-            taskActivity.finishTaskScore.text = (task.remainingTask + 1).toString()
+        val updatedTask = Task(
+            task.id,
+            task.name,
+            task.folderId,
+            task.color,
+            task.time,
+            task.remainingTask + 1,
+            task.totalTask
+        )
 
-            Toast.makeText(context, "Tâche finie", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.updateTask(updatedTask)
+        //modif affichage
+        taskActivity.finishTaskScore.text = (task.remainingTask + 1).toString()
+
+        Toast.makeText(context, "Tâche finie", Toast.LENGTH_SHORT).show()
     }
 
 }

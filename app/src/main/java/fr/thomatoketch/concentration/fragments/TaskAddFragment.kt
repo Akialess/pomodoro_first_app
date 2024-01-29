@@ -13,6 +13,7 @@ import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
+import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task_add.view.floatingActionButton
 import kotlinx.android.synthetic.main.popup_add_folder.edName
 
@@ -69,6 +70,10 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
 
             Toast.makeText(context, "Tâche créé avec succès", Toast.LENGTH_SHORT).show()
 
+        }
+
+        view.backButton.setOnClickListener {
+            context.onBackPressed();
         }
 
         return view

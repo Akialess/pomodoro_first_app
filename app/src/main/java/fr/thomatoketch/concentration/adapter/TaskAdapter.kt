@@ -1,6 +1,7 @@
 package fr.thomatoketch.concentration.adapter
 
 import android.content.res.ColorStateList
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,8 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
 
     fun setData(task: List<Task>) {
         this.taskList = task
+        this.taskList = taskList.filter { it.remainingTask != it.totalTask }
+        Log.d("TAG", "${taskList}")
         notifyDataSetChanged()
     }
 
