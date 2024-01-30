@@ -55,4 +55,8 @@ class FolderFragment(private val context: MainActivity) : Fragment(), FolderItem
         transaction.commit()
 
     }
+
+    override fun onLongFolderItemClick(folderId: Int) {
+        TODO("Not yet implemented")
+    }
 }

@@ -23,6 +23,7 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
     }
 

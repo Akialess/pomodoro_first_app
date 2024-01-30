@@ -3,13 +3,13 @@ package fr.thomatoketch.concentration.fragments
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.TextView
 import android.widget.Button
 import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.widget.Toast
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.thomatoketch.concentration.MainActivity
@@ -163,7 +163,6 @@ class HomeFragment(
 
     fun updateTask(task: Task) {
         //TODO("verifier input")
-        //TODO("si finishedtask = totaltask : supprimer")
         val updatedTask = Task(
             task.id,
             task.name,
