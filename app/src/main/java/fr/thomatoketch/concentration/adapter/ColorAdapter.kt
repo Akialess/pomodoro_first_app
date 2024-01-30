@@ -45,8 +45,6 @@ class ColorAdapter(private val context: MainActivity): RecyclerView.Adapter<Colo
 
         holder.itemView.setOnClickListener{setSingleSelection(position)}
 
-
-
     }
 
     private fun setSingleSelection(adapterPosition: Int) {

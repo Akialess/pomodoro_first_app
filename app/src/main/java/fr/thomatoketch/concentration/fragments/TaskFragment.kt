@@ -41,6 +41,7 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
         viewModel.readAllTaskByFolder?.observe(viewLifecycleOwner, Observer { task ->
             Log.d("TAG", "voir si bon id ${task}")
             adapter.setData(task[0].task)
+            adapter.defineColor(task[0].folder.color)
         })
 
         //met des espaces entre les items

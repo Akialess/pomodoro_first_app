@@ -55,4 +55,16 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         return repositoryFolder.getFolderInfoByID(folderId)
     }
 
+    fun updateFolder(folder: Folder) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repositoryFolder.updateFolder(folder)
+        }
+    }
+
+    fun deleteFolder(folder: Folder) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repositoryFolder.deleteFolder(folder)
+        }
+    }
+
 }

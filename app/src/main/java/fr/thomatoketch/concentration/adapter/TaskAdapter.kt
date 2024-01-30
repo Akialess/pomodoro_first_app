@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.item_task.view.totalTaskScore
 
 class TaskAdapter(private val context: MainActivity, private val taskItemClickListener: TaskItemClickListener): RecyclerView.Adapter<TaskAdapter.MyViewHolder>(){
     private var taskList = emptyList<Task>()
+    private var color = "2457C5"
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -32,7 +33,8 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
 
         holder.itemView.name_task.text = currentTask.name.toString()
 
-        val newColor = android.graphics.Color.parseColor(currentTask.color) //convertir la couleur en un entier
+        val newColor = android.graphics.Color.parseColor(this.color) //convertir la couleur en un entier
+
         holder.itemView.icon_item.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
 
         holder.itemView.finishTaskScore.text = currentTask.remainingTask.toString()
@@ -57,6 +59,11 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
         this.taskList = task
         this.taskList = taskList.filter { it.remainingTask != it.totalTask }
         Log.d("TAG", "${taskList}")
+        notifyDataSetChanged()
+    }
+
+    fun defineColor(color: String) {
+        this.color = color
         notifyDataSetChanged()
     }
 

@@ -146,7 +146,9 @@ class HomeFragment(
     }
 
     fun setTask(task: Task) {
-        //modification layout
+        //modification layout (modification de la tache courante
+        //TODO mettre dans les modifs le logo
+
         currentTask = task
 
         activityButton.visibility = View.GONE

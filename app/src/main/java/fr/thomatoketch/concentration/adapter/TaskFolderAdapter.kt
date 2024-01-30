@@ -3,8 +3,6 @@ package fr.thomatoketch.concentration.adapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +15,9 @@ import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.ViewModel
 import kotlinx.android.synthetic.main.item_folder_popup.view.icon_item
 import kotlinx.android.synthetic.main.item_folder_popup.view.textView
-import android.view.ContextMenu
-import android.view.MenuItem
 import android.widget.PopupMenu
-import android.widget.PopupWindow
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuPopupHelper
-import kotlinx.android.synthetic.main.activity_main.*
+import fr.thomatoketch.concentration.FolderPopupEdit
 
 class TaskFolderAdapter(val context: MainActivity, private val folderItemClickListener: FolderItemClickListener): RecyclerView.Adapter<TaskFolderAdapter.MyViewHolder>() {
 
@@ -62,7 +55,7 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
         }
 
         holder.itemView.setOnLongClickListener {
-            showPopupMenu(it)
+            showPopupMenu(it, currentFolder)
             true
         }
     }
@@ -76,7 +69,7 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
         notifyDataSetChanged()
     }
 
-    private fun showPopupMenu(view: View) {
+    private fun showPopupMenu(view: View, currentFolder: Folder) {
         // Afficher un popupmenu quand on clique sur un folder dans folderFragment
         var popupMenu = PopupMenu(context, view, R.style.PopupMenuStyle)
         popupMenu.menuInflater.inflate(R.menu.folder_item_menu, popupMenu.menu)
@@ -85,15 +78,19 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
         popupMenu.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.itemOpen -> {
-                    Toast.makeText(context,"Item 1", Toast.LENGTH_SHORT).show()
+                    folderItemClickListener.onFolderItemClick(currentFolder.id)
                     true
                 }
                 R.id.itemChange -> {
+                    // Ouvrir la popup pour edit le fichier selectionner
+                    FolderPopupEdit(context, currentFolder.id).show()
                     Toast.makeText(context,"Item 2", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.itemDelete -> {
-                    Toast.makeText(context,"Item 3", Toast.LENGTH_SHORT).show()
+                    //TODO ("faire une popup pour dire voulez-vous vraiment supprimer ?")
+                    viewModel.deleteFolder(currentFolder)
+                    Toast.makeText(context,"Fichier supprimé", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> true

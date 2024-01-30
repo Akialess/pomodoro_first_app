@@ -52,6 +52,7 @@ class FolderPopup(private val context: MainActivity, private val homePage: HomeF
         viewModel.readAllTaskByFolder?.observe(context, Observer { task ->
             Log.d("TAG", "${task[0].task}")
             adapter.setData(task[0].task)
+            adapter.defineColor(task[0].folder.color)
         })
 
         //afficher le nom du fichier sur la popup
