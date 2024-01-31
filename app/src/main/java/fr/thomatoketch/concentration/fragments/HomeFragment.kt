@@ -22,10 +22,11 @@ import kotlinx.android.synthetic.main.item_task.view.finishTaskScore
 import kotlinx.android.synthetic.main.item_task.view.icon_item
 import kotlinx.android.synthetic.main.item_task.view.timeTask
 import kotlinx.android.synthetic.main.item_task.view.totalTaskScore
+import java.io.Serializable
 
 class HomeFragment(
     private val context: MainActivity,
-) : Fragment(){
+) : Fragment(), Serializable {
     private lateinit var countDownTextView: TextView
     private lateinit var countDownTimer: CountDownTimer
 
@@ -148,7 +149,7 @@ class HomeFragment(
     fun setTask(task: Task) {
         //modification layout (modification de la tache courante
         //TODO mettre dans les modifs le logo
-
+        Log.d("TAG", "on entre bien ici ${task.name}")
         currentTask = task
 
         activityButton.visibility = View.GONE
@@ -182,4 +183,9 @@ class HomeFragment(
         Toast.makeText(context, "Tâche finie", Toast.LENGTH_SHORT).show()
     }
 
+    fun runTask(task: Task) {
+        //val task = arguments?.getSerializable("Task") as Task
+        this.setTask(task)
+        this.startTimer(task.time.toLong())
+    }
 }

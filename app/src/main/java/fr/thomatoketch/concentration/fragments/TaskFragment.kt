@@ -14,20 +14,25 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.Communicator
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskItemClickListener
 import fr.thomatoketch.concentration.adapter.TaskAdapter
+import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.utils.SpacingitemDecorator
 import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task.view.floatingActionButton
+import java.io.Serializable
 
 class TaskFragment(private val context: MainActivity, val folderId: Int): Fragment(), TaskItemClickListener {
 
     //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
     private lateinit var backButton: Button
+    private lateinit var communicator: Communicator
+    private var homeFragment: Serializable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
@@ -77,5 +82,12 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
 
 
         return view
+    }
+
+    override fun onTaskItemClick(task: Task) {
+
+        communicator = activity as Communicator
+        Log.d("TAG", "etape 2 voir si vide : ${task.name}")
+        communicator.passData(task)
     }
 }

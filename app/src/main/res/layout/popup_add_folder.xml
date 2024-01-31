@@ -23,6 +23,8 @@
         android:layout_width="300dp"
         android:layout_height="@dimen/height_case"
         android:background="@drawable/rectangle_blanc"
+        android:maxLines="1"
+        android:inputType="text"
         android:hint="Nom du dossier"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_vertical"
