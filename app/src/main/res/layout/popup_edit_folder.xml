@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Créer votre dossier"
+        android:text="Modifier votre dossier"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:background="@drawable/rectangle_blanc"
         android:maxLines="1"
         android:inputType="text"
-        android:hint="Nom du dossier"
+        android:hint="Nouveau nom du dossier"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_vertical"
         android:padding="10dp"
@@ -38,7 +38,7 @@
         android:id="@+id/select_color"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_btn"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edName" >
@@ -54,21 +54,44 @@
 
     </FrameLayout>
 
-
-
     <Button
-        android:id="@+id/add_btn"
+        android:id="@+id/save_btn"
+        style="@style/DefaultTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter"
-        style="@style/DefaultTextStyle"
-        android:textColor="@color/white"
-        android:gravity="center"
         android:background="@drawable/rectangle_bleu_plus"
-        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Enregistrer"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_separation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_color" />
+
+    <Button
+        android:id="@+id/cancel_btn"
+        style="@style/DefaultTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cercle_bleu"
+        android:gravity="center"
+        android:text="Annuler"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/view_separation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_separation"
+        app:layout_constraintTop_toBottomOf="@+id/select_color" />
+
+    <View
+        android:id="@+id/view_separation"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

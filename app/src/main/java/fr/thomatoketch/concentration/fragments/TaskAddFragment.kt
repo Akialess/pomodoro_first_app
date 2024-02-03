@@ -1,6 +1,7 @@
 package fr.thomatoketch.concentration.fragments
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
+import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task_add.view.floatingActionButton
 import kotlinx.android.synthetic.main.popup_add_folder.edName
 
@@ -56,21 +58,35 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
             val name = edName.text.toString()
             //TODO("Récupérer les infos de la case description et ajouter une partie description dans la database")
 
-            //Create task object
-            val task = Task(0, name, folderId, color, time, 0, numberTask)
-            //Add data to database
-            viewModel.addTask(task)
+            if (inputCheck(name)) {
+                //Create task object
+                val task = Task(0, name, folderId, color, time, 0, numberTask)
+                //Add data to database
+                viewModel.addTask(task)
 
-            //Retourne sur la page precedente (TaskPage dossier correspondant)
-            val transaction = context.supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, TaskFragment(context, folderId))
-            transaction.addToBackStack(null)
-            transaction.commit()
+                //Retourne sur la page precedente (TaskPage dossier correspondant)
+                val transaction = context.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_container, TaskFragment(context, folderId))
+                transaction.addToBackStack(null)
+                transaction.commit()
 
-            Toast.makeText(context, "Tâche créé avec succès", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Tâche créé avec succès", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(context, "Veuillez mettre un nom", Toast.LENGTH_SHORT).show()
+            }
+
 
         }
 
+        view.backButton.setOnClickListener {
+            context.onBackPressed();
+        }
+
         return view
+    }
+
+    private fun inputCheck(name: String): Boolean{
+        return !(TextUtils.isEmpty(name))
     }
 }

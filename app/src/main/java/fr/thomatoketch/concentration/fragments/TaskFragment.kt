@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -13,18 +14,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.thomatoketch.concentration.Communicator
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.TaskItemClickListener
 import fr.thomatoketch.concentration.adapter.TaskAdapter
+import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.utils.SpacingitemDecorator
+import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task.view.floatingActionButton
+import java.io.Serializable
 
 class TaskFragment(private val context: MainActivity, val folderId: Int): Fragment(), TaskItemClickListener {
 
     //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
+    private lateinit var communicator: Communicator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
@@ -38,6 +44,7 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
         viewModel.readAllTaskByFolder?.observe(viewLifecycleOwner, Observer { task ->
             Log.d("TAG", "voir si bon id ${task}")
             adapter.setData(task[0].task)
+            adapter.defineColor(task[0].folder.color)
         })
 
         //met des espaces entre les items
@@ -66,7 +73,18 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
             transaction.commit()
         }
 
+        view.backButton.setOnClickListener {
+            context.onBackPressed();
+        }
+
+
 
         return view
+    }
+
+    override fun onTaskItemClick(task: Task) {
+
+        communicator = activity as Communicator
+        communicator.passData(task)
     }
 }

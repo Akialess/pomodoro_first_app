@@ -11,6 +11,14 @@ class FolderRepository(private val folderDao: FolderDao) {
         folderDao.addFolder(folder)
     }
 
+    suspend fun updateFolder(folder: Folder){
+        folderDao.updateFolder(folder)
+    }
+
+    suspend fun deleteFolder(folder: Folder){
+        folderDao.deleteFolder(folder)
+    }
+
     fun getFolderInfoByID(folderId: Int): LiveData<Folder> {
         return folderDao.getFolderInfoById(folderId)
     }

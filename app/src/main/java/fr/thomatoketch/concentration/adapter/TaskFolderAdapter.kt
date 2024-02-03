@@ -15,6 +15,9 @@ import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.ViewModel
 import kotlinx.android.synthetic.main.item_folder_popup.view.icon_item
 import kotlinx.android.synthetic.main.item_folder_popup.view.textView
+import android.widget.PopupMenu
+import android.widget.Toast
+import fr.thomatoketch.concentration.FolderPopupEdit
 
 class TaskFolderAdapter(val context: MainActivity, private val folderItemClickListener: FolderItemClickListener): RecyclerView.Adapter<TaskFolderAdapter.MyViewHolder>() {
 
@@ -26,6 +29,7 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_folder, parent, false))
     }
 
@@ -33,6 +37,9 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentFolder = folderList[position]
         holder.itemView.textView.text = currentFolder.name.toString()
+
+        context.registerForContextMenu(holder.itemView)
+
         if (currentFolder.color != null) {
             val newColor = Color.parseColor(currentFolder.color) //convertir la couleur en un entier
             holder.itemView.icon_item?.backgroundTintList =
@@ -46,6 +53,11 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
             //permet de différencier si l'adapter est dans le HomeFragment ou dans TaskFragment
             folderItemClickListener.onFolderItemClick(currentFolder.id)
         }
+
+        holder.itemView.setOnLongClickListener {
+            showPopupMenu(it, currentFolder)
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -56,4 +68,47 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
         this.folderList = folder
         notifyDataSetChanged()
     }
+
+    private fun showPopupMenu(view: View, currentFolder: Folder) {
+        // Afficher un popupmenu quand on clique sur un folder dans folderFragment
+        var popupMenu = PopupMenu(context, view, R.style.PopupMenuStyle)
+        popupMenu.menuInflater.inflate(R.menu.folder_item_menu, popupMenu.menu)
+
+        // Les possibilites quand on clique sur un item du popupmenu
+        popupMenu.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.itemOpen -> {
+                    folderItemClickListener.onFolderItemClick(currentFolder.id)
+                    true
+                }
+                R.id.itemChange -> {
+                    // Ouvrir la popup pour edit le fichier selectionner
+                    FolderPopupEdit(context, currentFolder.id).show()
+                    Toast.makeText(context,"Item 2", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.itemDelete -> {
+                    //TODO ("faire une popup pour dire voulez-vous vraiment supprimer ?")
+                    viewModel.deleteFolder(currentFolder)
+                    Toast.makeText(context,"Fichier supprimé", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> true
+            }
+
+        }
+
+        // Mettre les icons pour le popup menu
+        try {
+            val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+            fieldMPopup.isAccessible = true
+            val mPopup = fieldMPopup.get(popupMenu)
+            mPopup.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java).invoke(mPopup, true)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        popupMenu.show()
+    }
+
 }

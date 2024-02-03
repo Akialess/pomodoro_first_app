@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemOpen"
+        android:title="Ouvrir"
+        android:icon="@drawable/ic_open"
+        />
+
+    <item
+        android:id="@+id/itemChange"
+        android:title="Modifier"
+        android:icon="@drawable/ic_edit"
+        />
+
+    <item
+        android:id="@+id/itemDelete"
+        android:title="Supprimer"
+        android:icon="@drawable/ic_delete"
+        />
+
+</menu>

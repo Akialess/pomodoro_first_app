@@ -15,6 +15,7 @@ import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.fragments.HomeFragment
 
+// Popup pour selectionner le bon dossier sur la page Home
 class FolderPopup(private val context: MainActivity, private val homePage: HomeFragment): Dialog(context), FolderItemClickListener, TaskItemClickListener {
 
     private lateinit var viewModel: ViewModel
@@ -51,6 +52,7 @@ class FolderPopup(private val context: MainActivity, private val homePage: HomeF
         viewModel.readAllTaskByFolder?.observe(context, Observer { task ->
             Log.d("TAG", "${task[0].task}")
             adapter.setData(task[0].task)
+            adapter.defineColor(task[0].folder.color)
         })
 
         //afficher le nom du fichier sur la popup
@@ -61,9 +63,12 @@ class FolderPopup(private val context: MainActivity, private val homePage: HomeF
         })
     }
 
+    override fun onLongFolderItemClick(folderId: Int){
+
+    }
+
     override fun onTaskItemClick(task: Task) {
-        homePage.setTask(task)
-        homePage.startTimer(task.time.toLong() * 60)
+        homePage.runTask(task)
 
         dismiss()
     }

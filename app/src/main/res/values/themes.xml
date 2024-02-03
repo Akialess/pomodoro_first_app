@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:popupMenuStyle">@style/PopupMenuStyle</item>
     </style>
 
     <style name="Titre">
@@ -42,6 +43,10 @@
     </style>
 
     <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
-
     </style>
+
+    <style name="PopupMenuStyle" parent="Widget.Material3.PopupMenu.ContextMenu">
+        <item name="android:popupBackground">@drawable/rectangle_blanc</item>
+    </style>
+
 </resources>
