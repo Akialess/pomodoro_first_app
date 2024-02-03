@@ -46,7 +46,6 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
         //quand on clique sur l'item
         holder.itemView.setOnClickListener {
             //permet de differencier si on est dans FolderPopup ou TaskFragment
-            Log.d("TAG", "etape 1 voir si vide : ${currentTask.name}")
             taskItemClickListener.onTaskItemClick(currentTask)
         }
 
@@ -59,7 +58,6 @@ class TaskAdapter(private val context: MainActivity, private val taskItemClickLi
     fun setData(task: List<Task>) {
         this.taskList = task
         this.taskList = taskList.filter { it.remainingTask != it.totalTask }
-        Log.d("TAG", "${taskList}")
         notifyDataSetChanged()
     }
 

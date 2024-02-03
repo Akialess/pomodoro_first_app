@@ -3,6 +3,7 @@ package fr.thomatoketch.concentration.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,6 +17,13 @@ class ViewModel(application: Application): AndroidViewModel(application) {
     private val repositoryFolder: FolderRepository
     private val repositoryTask: TaskRepository
 
+    // Save state fragment home
+    var homeFragmentSaveState: HomeFragmentSaveState? // Stocke notre info
+    val currentHomeFragmentSaveState: MutableLiveData<HomeFragmentSaveState> by lazy {
+        MutableLiveData<HomeFragmentSaveState>()
+    } // notifie un changement
+
+
     init {
         val folderDao = MyDatabase.getDatabase(application).folderDao()
         val taskDao = MyDatabase.getDatabase(application).taskDao()
@@ -25,6 +33,9 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         readAllTask = repositoryTask.readAllData
 
         readAllTaskByFolder = null
+
+        homeFragmentSaveState = null
+
     }
 
     fun addFolder(folder: Folder) {

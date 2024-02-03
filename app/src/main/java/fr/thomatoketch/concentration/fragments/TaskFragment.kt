@@ -30,9 +30,7 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
 
     //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
-    private lateinit var backButton: Button
     private lateinit var communicator: Communicator
-    private var homeFragment: Serializable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
@@ -87,7 +85,6 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
     override fun onTaskItemClick(task: Task) {
 
         communicator = activity as Communicator
-        Log.d("TAG", "etape 2 voir si vide : ${task.name}")
         communicator.passData(task)
     }
 }

@@ -21,9 +21,11 @@ class MainActivity : AppCompatActivity(), Communicator {
         //barre de navigation
         val navigationView = findViewById<BottomNavigationView>(R.id.navigation_view)
         navigationView.setOnNavigationItemSelectedListener {
+            fragmentHome.saveData()
             when (it.itemId) {
                 R.id.home_page -> {
                     loadFragment(fragmentHome)
+                    fragmentHome.loadData()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.task_page -> {
@@ -59,14 +61,8 @@ class MainActivity : AppCompatActivity(), Communicator {
 
     override fun passData(task: Task) {
         // Sert à communiquer entre le TaskFragment et le HomeFragment pour lancer une tache depuis
-        // le TaskFragment
-
-        /*
-        val bundleToHomeFragment = Bundle()
-
-        bundleToHomeFragment.putSerializable(TASK, task)
-        fragmentHome.arguments = bundleToHomeFragment
-         */
+        // le TaskFragment. On donne la tache dans le TaskFragment au mainActivity qui a acces aux
+        // deux fragments et on l'envoie ensuite au HomeFragment pour lancer la tache
 
         val navigationView = findViewById<BottomNavigationView>(R.id.navigation_view)
         navigationView.selectedItemId = R.id.home_page
