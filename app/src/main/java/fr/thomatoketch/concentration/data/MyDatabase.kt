@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 //Contient la database et sert à faire les relations entre l'app et la database
-@Database(entities = [Folder::class, Task::class], version = 8, exportSchema = false) // /:\ a chaque modif de la db (table, colonne), changer la version
+@Database(entities = [Folder::class, Task::class], version = 10, exportSchema = false) // /:\ a chaque modif de la db (table, colonne), changer la version
 abstract class MyDatabase: RoomDatabase() {
 
     abstract fun folderDao(): FolderDao

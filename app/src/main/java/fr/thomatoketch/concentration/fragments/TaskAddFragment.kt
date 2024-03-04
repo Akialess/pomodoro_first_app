@@ -2,6 +2,7 @@ package fr.thomatoketch.concentration.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,16 +13,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.shawnlin.numberpicker.NumberPicker
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
+import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import kotlinx.android.synthetic.main.fragment_task.view.backButton
 import kotlinx.android.synthetic.main.fragment_task_add.view.floatingActionButton
 import kotlinx.android.synthetic.main.popup_add_folder.edName
+import java.lang.Exception
 
 class TaskAddFragment(private val context: MainActivity, private val folderId: Int): Fragment() {
 
     private lateinit var viewModel: ViewModel
     private lateinit var color: String
+    private lateinit var currentFolder: Folder
     var numberTask: Int = 3
     var time: Int = 15
     var breakTime: Int = 5
@@ -31,8 +35,14 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
 
         //recupere la couleur du fichier car meme que pour la tache
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
-        viewModel.getFolderInfoById(folderId).observe(context, Observer { data ->
-            color = data.color
+        viewModel.getFolderInfoById(folderId).observe(context, Observer { folder ->
+            try {
+                color = folder.color
+                currentFolder = folder
+            } catch (e: Exception) {
+
+            }
+
         })
 
         val numberTaskPicker = view.findViewById<NumberPicker>(R.id.task_number_picker)
@@ -59,10 +69,15 @@ class TaskAddFragment(private val context: MainActivity, private val folderId: I
             //TODO("Récupérer les infos de la case description et ajouter une partie description dans la database")
 
             if (inputCheck(name)) {
+
                 //Create task object
-                val task = Task(0, name, folderId, color, time, 0, numberTask)
+                val task = Task(0, name, folderId, color, time, breakTime,0, numberTask)
                 //Add data to database
                 viewModel.addTask(task)
+
+                // Mis a jour des stats du fichier
+                currentFolder.task_remaining = currentFolder.task_remaining + numberTask
+                viewModel.updateFolder(currentFolder)
 
                 //Retourne sur la page precedente (TaskPage dossier correspondant)
                 val transaction = context.supportFragmentManager.beginTransaction()

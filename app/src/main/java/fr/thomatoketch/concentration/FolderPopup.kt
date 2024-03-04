@@ -14,6 +14,7 @@ import fr.thomatoketch.concentration.adapter.TaskFolderAdapter
 import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
 import fr.thomatoketch.concentration.fragments.HomeFragment
+import java.lang.Exception
 
 // Popup pour selectionner le bon dossier sur la page Home
 class FolderPopup(private val context: MainActivity, private val homePage: HomeFragment): Dialog(context), FolderItemClickListener, TaskItemClickListener {
@@ -50,9 +51,13 @@ class FolderPopup(private val context: MainActivity, private val homePage: HomeF
         viewModel.getTaskByFolder(folderId)
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
         viewModel.readAllTaskByFolder?.observe(context, Observer { task ->
-            Log.d("TAG", "${task[0].task}")
-            adapter.setData(task[0].task)
-            adapter.defineColor(task[0].folder.color)
+            try {
+                Log.d("TAG", "${task[0].task}")
+                adapter.setData(task[0].task)
+                adapter.defineColor(task[0].folder.color)
+            } catch (e: Exception) {
+
+            }
         })
 
         //afficher le nom du fichier sur la popup

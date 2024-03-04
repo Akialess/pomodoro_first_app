@@ -18,12 +18,6 @@ interface TaskDao {
     @Update
     suspend fun updateTask(task: Task)
 
-    /*
-    @Transaction
-    @Query("SELECT * FROM task_table")
-    fun getAllTaskWithFolder(): LiveData<List<TaskWithFolderEntity>>
-     */
-
     @Transaction
     @Query("SELECT * FROM folder_table WHERE id = :folderId")
     fun getTaskByFolder(folderId: Int): LiveData<List<TaskWithFolder>>

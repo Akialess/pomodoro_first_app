@@ -17,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider
 import fr.thomatoketch.concentration.MainActivity
 import fr.thomatoketch.concentration.R
 import fr.thomatoketch.concentration.FolderPopup
+import fr.thomatoketch.concentration.TaskItemClickListener
+import fr.thomatoketch.concentration.data.Folder
 import fr.thomatoketch.concentration.data.HomeFragmentSaveState
 import fr.thomatoketch.concentration.data.Task
 import fr.thomatoketch.concentration.data.ViewModel
@@ -52,13 +54,23 @@ class HomeFragment(
     private lateinit var restartButton: Button
 
     var currentTask: Task? = null
+    var currentFolder: Folder? = null
 
     // Indiquer l'etat du fragment
-    var taskRunning = 0 // 0 : le timer n'est pas lance, 1 : le timer est lance sans tache, 2 : le timer est lance avec tache, 3 : timer termine sur une tache
+
+    var taskRunning = 0
+    // 0 : le timer n'est pas lance,
+    // 1 : le timer est lance sans tache,
+    // 2 : le timer est lance avec tache,
+    // 3 : timer termine sur une tache
+    // 4 : timer symbolise une pause
 
 
     //permet d'injecter le layout
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        Log.d("TAG", "task rrunning : $taskRunning")
+
         view = inflater.inflate(R.layout.fragment_home, container, false)
         viewModel = ViewModelProvider(context).get(ViewModel::class.java)
 
@@ -68,15 +80,13 @@ class HomeFragment(
         giveUpButton = view.findViewById<Button>(R.id.bouton_abandon)
         activityButton = view.findViewById<Button>(R.id.bouton_activite)
         restartButton = view.findViewById<Button>(R.id.bouton_restart)
-        taskActivity = view.findViewById(R.id.taskActivity)
+        taskActivity = view.findViewById(R.id.taskActivity) as View
 
         //timer
-        countDownTextView = view.findViewById(R.id.décompte) as TextView //je sais c'est bancal le bail
+        countDownTextView = view.findViewById(R.id.décompte) as TextView
 
         startButton.setOnClickListener {
-            Log.d("TAG", "startbuton")
             if (currentTask == null) {
-                Log.d("TAG", "condition ok startbuton")
                 startTimer(3600) // Démarrer le compte à rebours
 
                 // Pour sauvegarder l'etat
@@ -152,7 +162,9 @@ class HomeFragment(
 
                 currentTask?.let {
                     Log.d("TAG", "finish task")
-                    updateTask(it)
+                    if (taskRunning != 4) {
+                        updateTask(it)
+                    }
                 }
 
                 // A la fin de la tache remettre le bouton start pour en relancer une
@@ -183,19 +195,22 @@ class HomeFragment(
     fun setTask(task: Task) {
         //modification layout (modification de la tache courante
         //TODO mettre dans les modifs le logo
-        //taskRunning = 2
 
         currentTask = task
 
+        // Faire l'affichage
         activityButton.visibility = View.GONE
         taskActivity.visibility = View.VISIBLE
-
         taskActivity.name_task.text = task.name.toString()
         val newColor = android.graphics.Color.parseColor(task.color) //convertir la couleur en un entier
         taskActivity.icon_item.backgroundTintList = ColorStateList.valueOf(newColor) //change la couleur du fond de l'icone
         taskActivity.finishTaskScore.text = task.remainingTask.toString()
         taskActivity.totalTaskScore.text = task.totalTask.toString()
         taskActivity.timeTask.text = task.time.toString()
+
+        viewModel.getFolderInfoById(currentTask?.folderId!!).observe(context, Observer { folder ->
+            currentFolder = folder
+        })
 
     }
 
@@ -207,6 +222,7 @@ class HomeFragment(
             task.folderId,
             task.color,
             task.time,
+            task.timeBreak,
             task.remainingTask + 1,
             task.totalTask
         )
@@ -217,15 +233,42 @@ class HomeFragment(
         taskActivity.finishTaskScore.text = (task.remainingTask + 1).toString()
 
         currentTask = updatedTask
-        taskRunning = 3
+
+        // Mis a jour stat folder
+        currentFolder?.time = currentFolder?.time?.plus(currentTask?.time!!)!!
+        currentFolder?.task_finished = currentFolder?.task_finished?.plus(1)!! // + 1 a tache finie
+        currentFolder?.task_remaining = currentFolder?.task_remaining?.minus(1)!! // - 1 a tache restante
+        if (currentFolder != null) {
+            viewModel.updateFolder(currentFolder!!)
+        }
+
+        if (updatedTask.remainingTask == updatedTask.totalTask) {
+            endTask()
+        } else {
+            taskRunning = 3
+        }
 
         Toast.makeText(context, "Tâche finie", Toast.LENGTH_SHORT).show()
+
     }
 
     fun runTask(task: Task) {
         this.setTask(task)
         taskRunning = 2
         this.startTimer(task.time.toLong()) //TODO remettre *60 pour avoir des heures sur le timer
+    }
+
+    fun runPause(task: Task) {
+        taskRunning = 4
+        this.startTimer(task.timeBreak.toLong())
+    }
+
+    private fun endTask() {
+        // Mets le bon affichage quand une tache a fini (remainingTask = totalTask)
+        taskRunning = 0
+        currentTask = null
+        activityButton.visibility = View.VISIBLE
+        taskActivity.visibility = View.GONE
     }
 
     fun saveData() {
@@ -261,7 +304,6 @@ class HomeFragment(
             }
             2 -> {
                 // Etat actuel : une tache lance et timer lance
-                // Quand on a lance une tache et le timer aussi
                 viewModel.homeFragmentSaveState = HomeFragmentSaveState(
                     false,
                     "test",
@@ -299,8 +341,10 @@ class HomeFragment(
 
             if (save.activityButton) {
                 activityButton.visibility = View.VISIBLE
+                taskActivity.visibility = View.GONE
             } else {
                 activityButton.visibility = View.GONE
+                taskActivity.visibility = View.VISIBLE
             }
 
             if (save.startButton) {
@@ -327,7 +371,7 @@ class HomeFragment(
                 restartButton.visibility = View.GONE
             }
 
-            if (save.currentTask != null) {
+            if (save.currentTask != null && taskRunning != 0) {
                 setTask(save.currentTask!!)
             }
 

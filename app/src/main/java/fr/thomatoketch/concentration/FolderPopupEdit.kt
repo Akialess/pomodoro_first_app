@@ -53,7 +53,7 @@ class FolderPopupEdit (private val context: MainActivity, private val folderId: 
 
         if (inputCheck(name, color)){
             //Create folder object
-            val folder = Folder(folderId, name, color)
+            val folder = Folder(folderId, name, color, 0, 0, 0)
             //Add data to database
             viewModel.updateFolder(folder)
             Toast.makeText(context, "Dossier modifié", Toast.LENGTH_SHORT).show()

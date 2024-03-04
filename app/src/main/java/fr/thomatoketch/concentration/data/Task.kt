@@ -12,6 +12,7 @@ data class Task(
     val folderId: Int,
     val color: String?,
     val time: Int,
+    val timeBreak: Int,
     var remainingTask: Int,
     var totalTask: Int
 ) : Serializable

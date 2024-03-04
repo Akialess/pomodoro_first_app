@@ -11,6 +11,26 @@
         android:layout_height="match_parent"
         android:background="@color/lightBlue_200">
 
+        <View
+            android:id="@+id/cercle_bleu_1"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="-150dp"
+            android:background="@drawable/cercle_bleu_addtask"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/cercle_bleu_2"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:layout_marginTop="-135dp"
+            android:layout_marginLeft="-50dp"
+            android:background="@drawable/cercle_bleu_addtask2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/text_title"

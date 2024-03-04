@@ -27,6 +27,9 @@
 
     <string name="repertoire">Mon répertoire</string>
     <string name="tache">Mes tâches</string>
+    <string name="temps_passe">Temps passé</string>
+    <string name="taches_accomplies">Tâches accomplies</string>
+    <string name="taches_restantes">Tâches restantes</string>
 
     <string name="number_picker_formatter">%2d</string>
 

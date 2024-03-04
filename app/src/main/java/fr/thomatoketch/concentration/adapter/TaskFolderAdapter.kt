@@ -84,7 +84,6 @@ class TaskFolderAdapter(val context: MainActivity, private val folderItemClickLi
                 R.id.itemChange -> {
                     // Ouvrir la popup pour edit le fichier selectionner
                     FolderPopupEdit(context, currentFolder.id).show()
-                    Toast.makeText(context,"Item 2", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.itemDelete -> {

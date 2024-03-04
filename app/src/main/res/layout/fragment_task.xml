@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="70dp"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:layout_marginBottom="70dp"
     android:background="@color/lightBlue_200"
     tools:context=".MainActivity">
 
@@ -24,26 +24,46 @@
             android:layout_width="@dimen/width_case"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:cardElevation="50dp"
-            android:paddingBottom="100dp"
             android:clipToPadding="false"
+            android:paddingBottom="100dp"
+            app:cardElevation="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_marginTop="119dp"
             android:layout_gravity="center"
-            android:tint="@color/blue"
+            android:layout_marginTop="119dp"
             android:backgroundTint="@color/lightBlue_500"
-            app:maxImageSize="50dp"
+            android:clickable="true"
+            android:tint="@color/blue"
             app:borderWidth="0dp"
             app:elevation="0dp"
+            app:maxImageSize="50dp"
             app:srcCompat="@drawable/ic_add" />
 
     </FrameLayout>
+
+    <View
+        android:id="@+id/cercle_bleu_1"
+        android:layout_width="235dp"
+        android:layout_height="235dp"
+        android:layout_marginLeft="-150dp"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/cercle_bleu_addtask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/cercle_bleu_2"
+        android:layout_width="235dp"
+        android:layout_height="235dp"
+        android:layout_marginLeft="-50dp"
+        android:layout_marginTop="-135dp"
+        android:background="@drawable/cercle_bleu_addtask2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_mes_taches"
@@ -82,22 +102,136 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view_separation"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_separation2"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_separation"
+        app:layout_constraintStart_toStartOf="@+id/statistique"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_separation3"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        app:layout_constraintStart_toEndOf="@+id/view_separation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_separation4"
+        android:layout_width="340dp"
+        android:layout_height="1dp"
+        android:background="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/statistique"
+        app:layout_constraintStart_toStartOf="@+id/statistique"
+        app:layout_constraintTop_toTopOf="@+id/statistique"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        />
+
+    <TextView
+        android:id="@+id/text_temps_restant"
+        style="@style/TextStatTaskFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/temps_passe"
+        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/statistique"
+        app:layout_constraintEnd_toStartOf="@+id/view_separation"
+        app:layout_constraintStart_toStartOf="@+id/statistique"
+        app:layout_constraintTop_toBottomOf="@+id/view_separation4" />
+
+    <TextView
+        android:id="@+id/text_tache_accompli"
+        style="@style/TextStatTaskFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/taches_accomplies"
+
+        app:layout_constraintBottom_toBottomOf="@+id/statistique"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        app:layout_constraintStart_toStartOf="@+id/statistique"
+        app:layout_constraintTop_toBottomOf="@+id/view_separation4" />
+
+    <TextView
+        android:id="@+id/text_tache_restante"
+        style="@style/TextStatTaskFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/taches_restantes"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/statistique"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        app:layout_constraintStart_toEndOf="@+id/view_separation"
+        app:layout_constraintTop_toBottomOf="@+id/view_separation4" />
+
+
+    <TextView
+        android:id="@+id/text_current_time"
+        style="@style/TextNumStatTaskFra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00h00"
+        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_temps_restant"
+        app:layout_constraintEnd_toStartOf="@+id/view_separation"
+        app:layout_constraintStart_toStartOf="@+id/statistique" />
+
+    <TextView
+        android:id="@+id/text_current_task_finished"
+        style="@style/TextNumStatTaskFra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/text_tache_accompli"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        app:layout_constraintStart_toStartOf="@+id/statistique" />
+
+    <TextView
+        android:id="@+id/text_current_task_remaining"
+        style="@style/TextNumStatTaskFra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_tache_restante"
+        app:layout_constraintEnd_toEndOf="@+id/statistique"
+        app:layout_constraintStart_toEndOf="@+id/text_current_task_finished" />
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="50dp"
-        android:clickable="true"
         android:backgroundTint="@android:color/transparent"
+        android:clickable="true"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/text_mes_taches"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back"
-        app:elevation="0dp"
         app:pressedTranslationZ="0dp"
-        app:borderWidth="0dp"
-        />
+        app:srcCompat="@drawable/ic_arrow_back" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

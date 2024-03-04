@@ -31,6 +31,9 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
     //TODO("Enlever entrée folderId et utiliser viewModel a la place")
     private lateinit var viewModel: ViewModel
     private lateinit var communicator: Communicator
+    private lateinit var totalTime: TextView
+    private lateinit var taskFinished: TextView
+    private lateinit var taskRemaining: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
@@ -59,10 +62,19 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
 
         val textTitle = view.findViewById<TextView>(R.id.textView)
 
-        //met le bon titre avec le nom du fichier
+        //Afficher les statistiques et le bon titre avec le nom du dossier
+        totalTime = view.findViewById(R.id.text_current_time)
+        taskFinished = view.findViewById(R.id.text_current_task_finished)
+        taskRemaining = view.findViewById(R.id.text_current_task_remaining)
+
         viewModel.getFolderInfoById(folderId).observe(context, Observer { data ->
             Log.d("TAG", "$data")
-            textTitle.text = data.name
+            if (data != null) {
+                textTitle.text = data.name
+                totalTime.text = longToHour(data.time)
+                taskFinished.text = data.task_finished.toString()
+                taskRemaining.text = data.task_remaining.toString()
+            }
         })
 
         view.floatingActionButton.setOnClickListener {
@@ -87,4 +99,14 @@ class TaskFragment(private val context: MainActivity, val folderId: Int): Fragme
         communicator = activity as Communicator
         communicator.passData(task)
     }
+
+    private fun longToHour(millisUntilFinished: Long): String {
+        // Convertir un Long en un temps en format 00H00
+        //val minutes = (millisUntilFinished / 1000) / 60 //TODO changer ici quand on remettra des minutes au lieu des secondes
+        //val secondes = (millisUntilFinished / 1000) % 60
+        val minutes = (millisUntilFinished) / 60
+        val secondes = (millisUntilFinished) % 60
+        return String.format("%02dH%02d", minutes, secondes)
+    }
+
 }

@@ -23,6 +23,10 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         MutableLiveData<HomeFragmentSaveState>()
     } // notifie un changement
 
+    var currentFolder: Folder?
+    val currentFolderLiveData: MutableLiveData<Folder> by lazy {
+        MutableLiveData<Folder>()
+    } // notifie un changement
 
     init {
         val folderDao = MyDatabase.getDatabase(application).folderDao()
@@ -35,6 +39,8 @@ class ViewModel(application: Application): AndroidViewModel(application) {
         readAllTaskByFolder = null
 
         homeFragmentSaveState = null
+
+        currentFolder = null
 
     }
 

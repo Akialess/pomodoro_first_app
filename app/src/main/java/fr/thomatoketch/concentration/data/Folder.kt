@@ -9,5 +9,8 @@ data class Folder (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val color: String
+    val color: String,
+    var time: Long,
+    var task_finished: Int,
+    var task_remaining: Int
 )

@@ -48,7 +48,7 @@ class FolderPopupAdd(private val context: MainActivity
 
         if (inputCheck(name, color)){
             //Create folder object
-            val folder = Folder(0, name, color)
+            val folder = Folder(0, name, color, 0, 0, 0)
             //Add data to database
             viewModel.addFolder(folder)
             Toast.makeText(context, "Dossier créé", Toast.LENGTH_SHORT).show()
